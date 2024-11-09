@@ -2,14 +2,9 @@
   "CopilotChat.nvim": { "branch": "canary", "commit": "d43fab67c328946fbf8e24fdcadfdb5410517e1f" },
   "LazyVim": { "branch": "main", "commit": "12818a6cb499456f4903c5d8e68af43753ebc869" },
   "LuaSnip": { "branch": "master", "commit": "e808bee352d1a6fcf902ca1a71cee76e60e24071" },
-<<<<<<< HEAD
   "SchemaStore.nvim": { "branch": "main", "commit": "bfe74baf72ca8964a211286fed864f30c672f19b" },
-  "auto-session": { "branch": "main", "commit": "aa01054d478c6d3efc0188cb2ed4850e9f475664" },
-=======
-  "SchemaStore.nvim": { "branch": "main", "commit": "6e2af7e093a4b92e3dce014aa1cbb5449ad1ebf9" },
   "aerial.nvim": { "branch": "master", "commit": "603156d4fd58963a05f221e76b1a25bc79ed55b0" },
-  "auto-session": { "branch": "main", "commit": "51e26935e3cc5c46b7dd93f3762a803540ff3581" },
->>>>>>> main
+  "auto-session": { "branch": "main", "commit": "aa01054d478c6d3efc0188cb2ed4850e9f475664" },
   "bufferline.nvim": { "branch": "main", "commit": "0b2fd861eee7595015b6561dade52fb060be10c4" },
   "catppuccin": { "branch": "main", "commit": "63685e1562ef53873c9764b483d7ac5c7a608922" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
