@@ -65,7 +65,9 @@ return {
                 if not final_config.env then
                   final_config.env = {}
                 end
-                final_config.env[words[1]] = words[2]
+                if not final_config.env[words[1]] then
+                  final_config.env[words[1]] = words[2]:match('^"?(.-)"?$') -- remove leading/trailing quotes
+                end
               end
             end
           end
