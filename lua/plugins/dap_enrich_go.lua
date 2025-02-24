@@ -76,5 +76,29 @@ return {
         on_config(final_config)
       end,
     }
+    dap.adapters.lldb = {
+      type = "executable",
+      -- command = "/usr/bin/lldb", -- adjust as needed, must be absolute path
+      command = "/opt/homebrew/opt/llvm/bin/lldb-dap",
+      name = "lldb",
+    }
+
+    dap.configurations.zig = {
+      {
+        name = "Debug Zig",
+        type = "lldb",
+        request = "launch",
+        program = "${workspaceFolder}/zig-out/bin/try-simple-http-backend",
+        -- program = function()
+        --   return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin/", "file")
+        -- end,
+        -- program = function()
+        --   return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin/", "try-simple-http-backend")
+        -- end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = {},
+      },
+    }
   end,
 }

@@ -9,3 +9,5 @@ end
 
 -- Tmux clipboard integration
 vim.opt.clipboard = "unnamedplus"
+
+vim.g.nightflyWinSeparator = 2

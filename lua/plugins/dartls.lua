@@ -8,11 +8,11 @@ return {
   "nvim-treesitter/nvim-treesitter",
   run = ":TSUpdate",
   config = function()
-    require("nvim-treesitter.configs").setup({
-      ensure_installed = { "dart" }, -- add "dart" here
-      highlight = {
-        enable = true, -- enable Treesitter-based highlighting
-      },
-    })
+    -- require("nvim-treesitter.configs").setup({
+    --   ensure_installed = { "dart" }, -- add "dart" here
+    --   highlight = {
+    --     enable = true, -- enable Treesitter-based highlighting
+    --   },
+    -- })
   end,
 }

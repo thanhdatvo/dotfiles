@@ -6,3 +6,11 @@ debug
 foo.*
 *.log
 data
+lua/plugins/dartls.lua
+lua/plugins/dartls.lua
+lua/plugins/dartls.lua
+lua/plugins/dartls.lua
+lua/plugins/dap_enrich_go.lua
+lua/plugins/dap_enrich_go.lua
+lua/plugins/dartls.lua
+lua/plugins/diffview.lua
