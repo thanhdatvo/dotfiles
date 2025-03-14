@@ -78,17 +78,59 @@ return {
     }
     dap.adapters.lldb = {
       type = "executable",
-      -- command = "/usr/bin/lldb", -- adjust as needed, must be absolute path
-      command = "/opt/homebrew/opt/llvm/bin/lldb-dap",
+      command = "codelldb", -- Path to `codelldb` binary
       name = "lldb",
     }
 
+    dap.configurations.rust = {
+      {
+        name = "Launch",
+        type = "lldb",
+        request = "launch",
+        preLaunchTask = function()
+          -- Run cargo build before starting the debugger
+          local result = vim.fn.system("cargo build")
+          if vim.v.shell_error ~= 0 then
+            print("❌ Cargo build failed!")
+            print(result)
+            return false
+          end
+          -- print("✅ Cargo build succeeded!")
+          return true
+        end,
+        program = "${workspaceFolder}/target/debug/${workspaceFolderBasename}",
+        -- program = function()
+        --   return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+        -- end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = {},
+      },
+    }
+    -- dap.adapters.lldb = {
+    --   type = "executable",
+    --   -- command = "/usr/bin/lldb", -- adjust as needed, must be absolute path
+    --   command = "/opt/homebrew/opt/llvm/bin/lldb-dap",
+    --   name = "lldb",
+    -- }
+    --
     dap.configurations.zig = {
       {
         name = "Debug Zig",
         type = "lldb",
         request = "launch",
-        program = "${workspaceFolder}/zig-out/bin/try-simple-http-backend",
+        program = "${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}",
+        preLaunchTask = function()
+          -- Run cargo build before starting the debugger
+          local result = vim.fn.system("zig build")
+          if vim.v.shell_error ~= 0 then
+            print("❌ zig build failed!")
+            print(result)
+            return false
+          end
+          -- print("✅ Cargo build succeeded!")
+          return true
+        end,
         -- program = function()
         --   return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin/", "file")
         -- end,
