@@ -2,11 +2,11 @@
 --   print(string.upper(opts.fargs[1]))
 -- end, { nargs = "*" })
 
-function camelToPascal(str)
+local function camelToPascal(str)
   -- Capitalize the first letter and concatenate with the rest of the string
   return str:gsub("^%l", string.upper)
 end
-function camelToSnake(str)
+local function camelToSnake(str)
   -- Insert an underscore before each uppercase letter and convert to lowercase
   local snake = str:gsub("(%u)", "_%1"):lower()
   -- Remove any leading underscore (if the string started with an uppercase letter)
