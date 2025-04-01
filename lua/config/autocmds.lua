@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 vim.api.nvim_create_autocmd("ModeChanged", {
   group = "ModeBackground",
   pattern = "*:v",
-  command = "highlight Normal guibg=#5f0000",
+  command = "highlight Normal guibg=#351c46",
 })
 
 -- cannot change Command mode background
