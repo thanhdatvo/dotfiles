@@ -19,8 +19,6 @@ return {
       dev_log = {
         enabled = false,
       },
-      -- fvm = true,
-      flutter_path = "/home/thanh-dat-vo/fvm/versions/beta/bin/flutter",
     })
   end,
 }
