@@ -9,13 +9,18 @@ return {
       },
       opts = {
         open_mapping = [[<F4>]],
-        direction = "float",
+        -- direction = "float",
         shade_filetypes = {},
-        hide_numbers = true,
         insert_mappings = true,
         terminal_mappings = true,
         start_in_insert = true,
         close_on_exit = true,
+        -- winbar = {
+        --   enabled = false,
+        --   name_formatter = function(term) --  term: Terminal
+        --     return term.name
+        --   end,
+        -- },
       },
     },
   },

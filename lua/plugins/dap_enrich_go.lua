@@ -4,6 +4,7 @@ return {
   opts = function()
     local dap = require("dap")
     local path = require("mason-registry").get_package("php-debug-adapter"):get_install_path()
+
     dap.adapters.go = {
       type = "server",
       port = 38697,
@@ -13,7 +14,10 @@ return {
       },
       enrich_config = function(finalConfig, on_config)
         local final_config = vim.deepcopy(finalConfig)
-
+        -- final_config.console = "integratedTerminal"
+        final_config.console = "integratedConsole"
+        final_config.output = "debug" -- you can nam
+        final_config.showLog = true
         -- Placeholder expansion for launch directives
         local placeholders = {
           ["${file}"] = function(_)
