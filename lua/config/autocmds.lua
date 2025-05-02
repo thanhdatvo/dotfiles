@@ -2,6 +2,11 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
+-- vim.cmd([[highlight FloatBorder guibg=NONE]])
+--
+-- set backgrund for float window
+vim.cmd([[highlight NormalFloat guibg=NONE]])
+
 vim.api.nvim_create_augroup("ModeBackground", { clear = true })
 
 vim.api.nvim_create_autocmd("ModeChanged", {
@@ -21,11 +26,3 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   pattern = "*:v",
   command = "highlight Normal guibg=#351c46",
 })
-
--- cannot change Command mode background
--- because of noice
--- vim.api.nvim_create_autocmd("ModeChanged", {
---   group = "ModeBackground",
---   pattern = "*:c",
---   command = "highlight Normal guibg=#5f5f00",
--- })
