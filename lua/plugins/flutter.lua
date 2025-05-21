@@ -19,6 +19,15 @@ return {
       dev_log = {
         enabled = false,
       },
+      settings = {
+        dart = {
+          analysisExcludedFolders = {
+            vim.fn.expand("$PWD/android"),
+            vim.fn.expand("$PWD/ios"),
+            vim.fn.expand("$PWD/web"),
+          },
+        },
+      },
     })
   end,
 }
