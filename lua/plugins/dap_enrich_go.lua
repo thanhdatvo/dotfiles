@@ -77,6 +77,9 @@ return {
       on_config(final_config)
     end
     dap.adapters.go = function(callback, config)
+      function trimLeftRight(s)
+        return s:match("^%s*(.-)%s*$")
+      end
       local port = get_random_port()
 
       -- Launch delve server manually
@@ -115,11 +118,17 @@ return {
       end
       -- pipe stdout/stderr to REPL
       stdout:read_start(function(err, data)
-        if err then
-          vim.schedule(function()
-            vim.notify("stdout error: " .. err, vim.log.levels.ERROR)
-          end)
-        elseif data then
+        -- if err then
+        --   -- vim.schedule(function()
+        --   --   vim.notify("stdout error: " .. err, vim.log.levels.ERROR)
+        --   -- end)
+        --   local red_err = "\27[31m" .. err .. "\27[0m"
+        --   vim.schedule(function()
+        --     dap_repl.append(red_err)
+        --   end)
+        -- else
+        if data and string.len(trimLeftRight(data)) > 0 then
+          data = trimLeftRight(data)
           vim.schedule(function()
             dap_repl.append(data)
           end)
@@ -127,11 +136,29 @@ return {
       end)
       -- Optionally read stderr
       stderr:read_start(function(err, data)
-        if err then
-          vim.notify("dlv stderr: " .. err, vim.log.levels.ERROR)
-        elseif data then
-          vim.notify("dlv log: " .. data, vim.log.levels.DEBUG)
+        -- if err then
+        --   -- vim.schedule(function()
+        --   --   vim.notify("stdout error: " .. err, vim.log.levels.ERROR)
+        --   -- end)
+        --   local red_err = "\27[31m" .. err .. "\27[0m"
+        --   vim.schedule(function()
+        --     dap_repl.append(red_err)
+        --   end)
+        -- else
+        if data and string.len(trimLeftRight(data)) > 0 then
+          local red_err = "\27[31m" .. trimLeftRight(data) .. " \27[0m"
+          vim.schedule(function()
+            dap_repl.append(red_err)
+          end)
+          -- vim.schedule(function()
+          --   dap_repl.append(data)
+          -- end)
         end
+        -- if err then
+        --   vim.notify("dlv stderr: " .. err, vim.log.levels.ERROR)
+        -- elseif data then
+        --   vim.notify("dlv log: " .. data, vim.log.levels.DEBUG)
+        -- end
       end)
 
       -- Notify DAP to connect
