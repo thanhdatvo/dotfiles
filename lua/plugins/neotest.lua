@@ -15,6 +15,7 @@ return {
             test_table = true, -- optional: support for table-driven tests
           },
         }),
+        require("rustaceanvim.neotest"),
       },
     })
   end,

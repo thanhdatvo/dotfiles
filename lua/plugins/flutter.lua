@@ -7,15 +7,21 @@ return {
     "mfussenegger/nvim-dap",
   },
   config = function()
-    require("flutter-tools").setup({
-      debugger = {
-        enabled = true,
-        register_configurations = function(paths)
-          -- local dap = require("dap")
-          -- dap.configurations.dart = {}
-          require("dap.ext.vscode").load_launchjs()
-        end,
+    require("flutter-tools").setup_project({
+      {
+        additional_args = { "--web-experimental-hot-reload" },
       },
+    })
+    require("flutter-tools").setup({
+      fvm = true,
+      -- debugger = {
+      --   enabled = true,
+      --   register_configurations = function(paths)
+      --     --   -- local dap = require("dap")
+      --     --   -- dap.configurations.dart = {}
+      --     require("dap.ext.vscode").load_launchjs()
+      --   end,
+      -- },
       dev_log = {
         enabled = false,
       },
@@ -25,6 +31,8 @@ return {
             vim.fn.expand("$PWD/android"),
             vim.fn.expand("$PWD/ios"),
             vim.fn.expand("$PWD/web"),
+            vim.fn.expand("$PWD/build"),
+            vim.fn.expand("$PWD"),
           },
         },
       },
