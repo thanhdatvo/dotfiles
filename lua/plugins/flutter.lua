@@ -32,6 +32,8 @@ return {
             vim.fn.expand("$PWD/ios"),
             vim.fn.expand("$PWD/web"),
             vim.fn.expand("$PWD/build"),
+            vim.fn.expand("$PWD/.dart_tool"),
+            vim.fn.expand("$PWD/.idea"),
             vim.fn.expand("$PWD"),
           },
         },
