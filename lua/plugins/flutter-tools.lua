@@ -14,14 +14,12 @@ return {
     })
     require("flutter-tools").setup({
       fvm = true,
-      -- debugger = {
-      --   enabled = true,
-      --   register_configurations = function(paths)
-      --     --   -- local dap = require("dap")
-      --     --   -- dap.configurations.dart = {}
-      --     require("dap.ext.vscode").load_launchjs()
-      --   end,
-      -- },
+      debugger = {
+        enabled = true,
+        register_configurations = function(paths)
+          require("dap.ext.vscode").load_launchjs()
+        end,
+      },
       dev_log = {
         enabled = false,
       },
