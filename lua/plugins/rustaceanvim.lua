@@ -19,7 +19,6 @@ return {
 
     local cfg = require("rustaceanvim.config")
     local lldb_adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
-
     local program = function(callback, config)
       vim.fn.jobstart("cargo build", {
         stdout_buffered = true,
