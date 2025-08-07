@@ -7,21 +7,29 @@
 --     vim.cmd([[colorscheme aura-dark]])
 --   end,
 -- }
-return {
-  "rose-pine/neovim",
-  name = "rose-pine",
-  config = function()
-    vim.cmd("colorscheme rose-pine")
-  end,
-}
 -- return {
---   -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
---   -- {
---   --   "LazyVim/LazyVim",
---   --   opts = {
---   --     colorscheme = "catppuccin-mocha",
---   --   },
---   -- },
+--   "rose-pine/neovim",
+--   name = "rose-pine",
+--   config = function()
+--     require("rose-pine").setup({
+--       styles = {
+--         italic = false,
+--       },
+--     })
+--     vim.cmd("colorscheme rose-pine")
+--   end,
+--   opts = {},
+-- }
+-- return {
+--   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "catppuccin-mocha",
+--     },
+--   },
+-- }
+-- return {
 --   {
 --     "bluz71/vim-nightfly-colors",
 --     name = "nightfly",
@@ -35,3 +43,14 @@ return {
 --     },
 --   },
 -- }
+return {
+  "folke/tokyonight.nvim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    vim.cmd("colorscheme tokyonight-day")
+  end,
+  -- opts = {
+  --   colorscheme = "tokyonight-day",
+  -- },
+}

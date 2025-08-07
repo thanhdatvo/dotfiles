@@ -1,4 +1,5 @@
 hs = hs
+
 -- Global variable to store the drawing
 local windowBorder = nil
 
@@ -90,3 +91,12 @@ end)
 -- 	-- Update the last active app to the current one
 -- 	lastApp = currentApp
 -- end)
+
+-- hs.loadSpoon("hs_select_window")
+--
+-- -- customize bindings to your preference
+-- local SWbindings = {
+-- 	all_windows = { { "alt" }, "b" },
+-- 	app_windows = { { "alt", "shift" }, "b" },
+-- }
+-- spoon.hs_select_window:bindHotkeys(SWbindings)
