@@ -1,7 +1,66 @@
 return {
   "neovim/nvim-lspconfig",
+
+  -- opts = function()
+  --   print("hello world")
+  --
+  --   -- require("lspconfig").bacon_ls.setup({
+  --   --   init_options = {
+  --   --     updateOnSave = true,
+  --   --     updateOnSaveWaitMillis = 1000,
+  --   --     updateOnChange = false,
+  --   --   },
+  --   -- })
+  --   -- require("lspconfig").rust_analyzer.setup({
+  --   --   settings = {
+  --   --     ["rust-analyzer"] = {
+  --   --       -- cargo = { allFeatures = true },
+  --   --       checkOnSave = { enable = false },
+  --   --       diagnostics = { enable = false },
+  --   --     },
+  --   --   },
+  --   -- })
+  --   -- rust-analyzer.checkOnSave.enable = false
+  --   -- rust-analyzer.diagnostics.enable = false
+  --
+  --   local opts = {
+  --     servers = {
+  --       rust_analyzer = {
+  --         settings = {
+  --           ["rust-analyzer"] = {
+  --             checkOnSave = { enable = false },
+  --             diagnostics = { enable = false },
+  --           },
+  --         },
+  --       },
+  --       bacon_ls = {
+  --         init_options = {
+  --           updateOnSave = true,
+  --           updateOnSaveWaitMillis = 1000,
+  --           updateOnChange = false,
+  --         },
+  --       },
+  --     },
+  --   }
+  --   return opts
+  -- end,
+
   opts = {
     servers = {
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = { enable = false },
+            dianostics = { enable = false },
+          },
+        },
+      },
+      bacon_ls = {
+        init_options = {
+          updateOnSave = true,
+          updateOnSaveWaitMillis = 1000,
+        },
+      },
       dartls = {
         cmd = { "dart", "language-server", "--protocol=lsp" },
         filetypes = { "dart" },

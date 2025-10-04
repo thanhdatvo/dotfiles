@@ -6,7 +6,7 @@ return {
   optional = true,
   opts = function()
     local dap = require("dap")
-    local path = require("mason-registry").get_package("php-debug-adapter"):get_install_path()
+    -- local path = require("mason-registry").get_package("php-debug-adapter"):get_install_path()
 
     -- [START GOLANG]
     local function get_random_port()
@@ -182,7 +182,8 @@ return {
       },
     }
     local mason_registry = require("mason-registry")
-    local js_debug_path = mason_registry.get_package("js-debug-adapter"):get_install_path()
+    -- local js_debug_path = mason_registry.get_package("js-debug-adapter"):get_install_path()
+    local js_debug_path = vim.fn.exepath("js-debug-adapter")
     for _, adapter in ipairs({
       "pwa-node",
       "pwa-chrome",

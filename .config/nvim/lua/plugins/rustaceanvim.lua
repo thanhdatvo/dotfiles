@@ -2,7 +2,20 @@ return {
   "mrcjkb/rustaceanvim",
   version = "^6", -- Recommended
   lazy = false, -- This plugin is already lazy
+
   config = function()
+    -- Note: disable rust-analyzer to use bacon-ls
+    vim.g.rustaceanvim = {
+      server = {
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = false,
+            dianostics = { enable = false },
+          },
+        },
+      },
+    }
+
     local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.11.5/"
     local codelldb_path = extension_path .. "adapter/codelldb"
     local liblldb_path = extension_path .. "lldb/lib/liblldb"

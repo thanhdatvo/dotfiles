@@ -11,3 +11,5 @@ end
 vim.opt.clipboard = "unnamedplus"
 
 vim.g.nightflyWinSeparator = 2
+
+vim.g.lazyvim_rust_diagnostics = "bacon-ls"
