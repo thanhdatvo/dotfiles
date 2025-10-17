@@ -50,7 +50,4 @@ return {
   config = function()
     vim.cmd("colorscheme tokyonight-day")
   end,
-  -- opts = {
-  --   colorscheme = "tokyonight-day",
-  -- },
 }
