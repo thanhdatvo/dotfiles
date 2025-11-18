@@ -1,16 +1,16 @@
 return {
   "mrcjkb/rustaceanvim",
-  version = "^6", -- Recommended
-  lazy = false, -- This plugin is already lazy
-
   config = function()
     -- Note: disable rust-analyzer to use bacon-ls
     vim.g.rustaceanvim = {
       server = {
-        settings = {
+        default_settings = {
           ["rust-analyzer"] = {
+            cargo = {
+              features = { "test-support" },
+            },
             checkOnSave = false,
-            dianostics = { enable = false },
+            diagnostics = false,
           },
         },
       },

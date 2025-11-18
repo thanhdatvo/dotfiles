@@ -21,7 +21,7 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "~/Documents/Sync/",
+        path = "~/Documents/Save/",
       },
     },
 

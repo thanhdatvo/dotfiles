@@ -6,6 +6,10 @@ return {
   --   })
   -- end,
   "nvim-treesitter/nvim-treesitter",
+
+  dependencies = {
+    -- "Ripple-TS/ripple",
+  },
   run = ":TSUpdate",
   opts = {
     ensure_installed = {
@@ -15,9 +19,13 @@ return {
       "css",
       "html",
       "dart",
+      "ripple",
     },
     highlight = {
       enable = true,
     },
   },
+  -- config = function()
+  --   require("ripple").setup()
+  -- end,
 }

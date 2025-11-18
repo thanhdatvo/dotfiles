@@ -47,20 +47,28 @@ return {
 
   opts = {
     servers = {
-      rust_analyzer = {
-        settings = {
-          ["rust-analyzer"] = {
-            checkOnSave = { enable = false },
-            dianostics = { enable = false },
-          },
-        },
-      },
-      bacon_ls = {
-        init_options = {
-          updateOnSave = true,
-          updateOnSaveWaitMillis = 1000,
-        },
-      },
+      -- bacon_ls = {
+      --   enabled = true,
+      --   env = {
+      --     BACON_TEMP_DIR = vim.fn.getcwd() .. "/.bacon_tmp",
+      --   },
+      -- },
+      -- ["rust-analyzer"] = { enabled = false },
+
+      -- rust_analyzer = {
+      --   settings = {
+      --     ["rust-analyzer"] = {
+      --       checkOnSave = { enable = false },
+      --       dianostics = { enable = false },
+      --     },
+      --   },
+      -- },
+      -- bacon_ls = {
+      --   init_options = {
+      --     updateOnSave = true,
+      --     updateOnSaveWaitMillis = 1000,
+      --   },
+      -- },
       dartls = {
         cmd = { "dart", "language-server", "--protocol=lsp" },
         filetypes = { "dart" },

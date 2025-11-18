@@ -1,0 +1,55 @@
+-- vim.filetype.add({
+--   extension = {
+--     ripple = "ripple", -- if your files are *.ripple
+--     ripplets = "ripple", -- or whatever extension you use
+--   },
+-- })
+-- -- ~/.config/nvim/lua/my_lsp/init.lua
+--
+-- local M = {}
+--
+-- M.setup = function()
+--   -- 2️⃣ Automatically start ripple-language-server for Ripple files
+--   vim.api.nvim_create_autocmd("FileType", {
+--     pattern = { "ripple" },
+--     callback = function(args)
+--       -- local filetype = args.match
+--       -- local root = vim.fs.root(0, { ".git", "ripple.json", "package.json" }) or vim.fn.getcwd()
+--       --
+--       -- -- 3️⃣ Point to your local ripple-language-server binary
+--       -- -- Example: if stored in ~/Projects/ripplets/bin/ripple-language-server
+--       -- local local_server = vim.fn.expand("~/Projects/ripplets/bin/ripple-language-server")
+--
+--       -- 4️⃣ Check if local binary exists; fallback to global if not
+--       local cmd
+--       -- if vim.fn.executable(local_server) == 1 then
+--       --   cmd = { local_server }
+--       -- elseif vim.fn.executable("ripple-language-server") == 1 then
+--       cmd = { "ripple-language-server", "--stdio" }
+--       -- cmd = { "ripple-language-server" }
+--       -- else
+--       --   vim.notify("[my_lsp] ❌ ripple-language-server not found (local or global)", vim.log.levels.ERROR)
+--       --   return
+--       -- end
+--
+--       -- 5️⃣ Start the LSP client
+--       vim.lsp.start({
+--         name = "ripple-lsp",
+--         cmd = cmd,
+--         root_dir = root,
+--         on_attach = function(client, bufnr)
+--           vim.notify("[my_lsp] ✅ Started LSP: " .. client.name, vim.log.levels.INFO)
+--           local opts = { buffer = bufnr, silent = true }
+--           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+--           vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+--           vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+--         end,
+--         on_exit = function(_, code, _)
+--           vim.notify("[my_lsp] LSP exited with code " .. tostring(code), vim.log.levels.INFO)
+--         end,
+--       })
+--     end,
+--   })
+-- end
+--
+-- return M

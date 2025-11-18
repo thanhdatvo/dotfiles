@@ -20,10 +20,23 @@ function RestartDAPSession()
     dap.listeners.after.event_exited["restart_dap"] = run_after_terminate
 
     -- trigger termination
-    dap.terminate()
+    -- dap.terminate()
+    dap.disconnect({ terminate = true })
   else
     -- no session running, just run the last config
     dap.run_last()
   end
 end
 vim.keymap.set("n", "<leader>dr", RestartDAPSession, { desc = "DAP: Restart session" })
+
+vim.keymap.set("n", "<leader>yd", function()
+  local diags = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+  if #diags > 0 then
+    local msg = diags[1].message
+    -- vim.fn.setreg('"', msg)
+    vim.fn.setreg("+", msg)
+    print("Yanked diagnostic: " .. msg)
+  else
+    print("No diagnostic here")
+  end
+end, { desc = "Yank diagnostic message" })

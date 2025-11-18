@@ -9,7 +9,7 @@ return {
       },
       opts = {
         open_mapping = [[<F4>]],
-        -- direction = "float",
+        direction = "float",
         shade_filetypes = {},
         insert_mappings = true,
         terminal_mappings = true,
