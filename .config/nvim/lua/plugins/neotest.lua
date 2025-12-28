@@ -22,7 +22,7 @@ return {
           --   -- We replace "cargo test" with "cargo nextest run"
           --   return vim.list_extend({ "cargo", "nextest", "run" }, test_args)
           -- end,
-          args = { "--features", "test-support" },
+          -- args = { "--features", "test-support" },
         }),
       },
     })

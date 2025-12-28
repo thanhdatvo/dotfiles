@@ -47,6 +47,15 @@ return {
 
   opts = {
     servers = {
+      nil_ls = {
+        settings = {
+          ["nil"] = {
+            formatting = {
+              command = { "alejandra" },
+            },
+          },
+        },
+      },
       -- bacon_ls = {
       --   enabled = true,
       --   env = {

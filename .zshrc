@@ -161,3 +161,20 @@ eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Created by `pipx` on 2025-12-01 21:14:33
+export PATH="$PATH:/Users/thanhdatvo/.local/bin"
+
+# nix
+# export PATH="/nix/var/nix/profiles/default/bin"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+# enalbe KAFKA JMX monitoring
+export KAFKA_JMX_OPTS="
+-Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote.port=9999
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.ssl=false
+"
+
+alias k=kubectl

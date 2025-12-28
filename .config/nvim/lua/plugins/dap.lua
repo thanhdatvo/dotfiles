@@ -156,18 +156,17 @@ return {
     dap.configurations.zig = {
       {
         name = "Debug Zig",
-        type = "lldb",
+        type = "codelldb",
         request = "launch",
         program = "${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}",
         preLaunchTask = function()
           -- Run cargo build before starting the debugger
           local result = vim.fn.system("zig build")
           if vim.v.shell_error ~= 0 then
-            print("❌ zig build failed!")
-            print(result)
+            print("❌ zig build failed!" .. "\n" .. result)
             return false
           end
-          -- print("✅ Cargo build succeeded!")
+          print("✅ zig build succeeded!" .. vim.v.shell_error)
           return true
         end,
         -- program = function()

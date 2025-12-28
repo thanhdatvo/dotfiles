@@ -7,7 +7,7 @@ return {
         default_settings = {
           ["rust-analyzer"] = {
             cargo = {
-              features = { "test-support" },
+              -- features = { "test-support" },
             },
             checkOnSave = false,
             diagnostics = false,
