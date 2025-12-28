@@ -178,3 +178,4 @@ export KAFKA_JMX_OPTS="
 "
 
 alias k=kubectl
+
