@@ -161,6 +161,7 @@ eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # Created by `pipx` on 2025-12-01 21:14:33
 export PATH="$PATH:/Users/thanhdatvo/.local/bin"

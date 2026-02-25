@@ -1,15 +1,6 @@
 return {
-  -- "neovim/nvim-lspconfig",
-  -- opts = function()
-  --   require("lspconfig").dartls.setup({
-  --     cmd = { "dart", "language-server", "--protocol=lsp" },
-  --   })
-  -- end,
   "nvim-treesitter/nvim-treesitter",
-
-  dependencies = {
-    -- "Ripple-TS/ripple",
-  },
+  dependencies = {},
   run = ":TSUpdate",
   opts = {
     ensure_installed = {
@@ -22,10 +13,7 @@ return {
       "ripple",
     },
     highlight = {
-      enable = true,
+      -- enable = false,
     },
   },
-  -- config = function()
-  --   require("ripple").setup()
-  -- end,
 }
