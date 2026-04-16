@@ -36,3 +36,9 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   pattern = "*:v",
   command = "highlight Normal guibg=#351c46",
 })
+
+-- remove this in the future when
+-- filetype detect order work
+vim.schedule(function()
+  vim.cmd("filetype detect")
+end)

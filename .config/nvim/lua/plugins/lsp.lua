@@ -1,11 +1,5 @@
 return {
   "neovim/nvim-lspconfig",
-  -- opts = function(_, opts)
-  --   for _, server in pairs(opts.servers or {}) do
-  --     server.capabilities = server.capabilities or {}
-  --     server.capabilities.semanticTokensProvider = nil
-  --   end
-  -- end,
   opts = {
     servers = {
       nil_ls = {
@@ -24,6 +18,18 @@ return {
           local lspconfig = require("lspconfig")
           return lspconfig.util.root_pattern("pubspec.yaml", ".git")(fname) or vim.fn.getcwd()
         end,
+      },
+      pyright = {
+        settings = {
+          pyright = {
+            disableOrganizeImports = true,
+          },
+          python = {
+            analysis = {
+              ignore = { "*" },
+            },
+          },
+        },
       },
     },
   },

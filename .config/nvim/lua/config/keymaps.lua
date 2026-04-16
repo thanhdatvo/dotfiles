@@ -1,6 +1,7 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true })
 
 local dap = require("dap")
@@ -27,6 +28,7 @@ function RestartDAPSession()
     dap.run_last()
   end
 end
+
 vim.keymap.set("n", "<leader>dr", RestartDAPSession, { desc = "DAP: Restart session" })
 
 vim.keymap.set("n", "<leader>yd", function()
@@ -39,4 +41,7 @@ vim.keymap.set("n", "<leader>yd", function()
   else
     print("No diagnostic here")
   end
-end, { desc = "Yank diagnostic message" })
+end, { desc = "desc  desc  message" })
+
+vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking replaced text" })
+

@@ -4,6 +4,7 @@ return {
   run = ":TSUpdate",
   opts = {
     ensure_installed = {
+      "python",
       "svelte",
       "javascript",
       "typescript",
