@@ -121,7 +121,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
-[[ -f /Users/thanhdatvo/.dart-cli-completion/zsh-config.zsh ]] && . /Users/thanhdatvo/.dart-cli-completion/zsh-config.zsh || true
+[[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
 export PATH="$HOME/fvm/default/bin/:$PATH"
@@ -138,7 +138,7 @@ export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
 export PATH="$PATH:/Applications/Genymotion.app/Contents/MacOS"
 
 # bun completions
-[ -s "/Users/thanhdatvo/.bun/_bun" ] && source "/Users/thanhdatvo/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -146,7 +146,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 ## these set tip is for gvm
-[[ -s "/Users/thanhdatvo/.gvm/scripts/gvm" ]] && source "/Users/thanhdatvo/.gvm/scripts/gvm"
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 export GOROOT_BOOTSTRAP=$(brew --prefix go)/libexec
 ## end gvm setup
 
@@ -164,7 +164,7 @@ eval "$(zoxide init zsh)"
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # Created by `pipx` on 2025-12-01 21:14:33
-export PATH="$PATH:/Users/thanhdatvo/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # nix
 # export PATH="/nix/var/nix/profiles/default/bin"
