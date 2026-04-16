@@ -26,7 +26,7 @@ return {
       "markdownlint-cli2",
       "marksman",
       "neocmakelsp",
-      "nil",
+      -- "nil",
       "prettier",
       "pyright",
       "ruff",
