@@ -50,7 +50,6 @@
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # context                 # user@host
-    dir                       # current directory
     # vcs                       # git status
     # # command_execution_time  # previous command duration
     # # virtualenv              # python virtual environment
@@ -59,6 +58,7 @@
 
   # Right prompt segments.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    dir                       # current directory
     command_execution_time    # previous command duration
     # virtualenv                # python virtual environment
     # context                   # user@host
@@ -66,7 +66,7 @@
   )
 
   # Add new type after left prompt.
-  typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+  typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=false
 
   # [START] disable curve
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=
@@ -202,14 +202,15 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
 
-precmd() {
-  echo ">"
-  echo ""
-  echo "--"
-}
 preexec() {
   echo ""
-  echo "<"
+  echo " <"
+}
+
+precmd() {
+  echo " >"
+  echo ""
+  echo " -"
 }
 
 # truncate_middle
