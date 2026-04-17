@@ -210,3 +210,8 @@ preexec() {
   echo ""
   echo "<"
 }
+
+# truncate_middle
+typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_from_right
+typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
