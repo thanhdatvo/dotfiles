@@ -202,15 +202,27 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
 
+# preexec() {
+#   #echo ""
+#   echo " <"
+# }
+#
+# precmd() {
+#   echo " >"
+#   #echo ""
+#   echo " -"
+# }
+
 preexec() {
-  echo ""
-  echo " <"
+  # echo "\e[32m <\e[0m"
+  echo "\e[38;5;46m <\e[0m"
 }
 
 precmd() {
-  echo " >"
-  echo ""
-  echo " -"
+  #echo "\e[34m >\e[0m"
+  echo "\e[38;5;46m >\e[0m"
+  #echo "\e[33m -\e[0m"
+  echo "\e[38;5;46m -\e[0m"
 }
 
 # truncate_middle
