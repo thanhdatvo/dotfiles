@@ -151,9 +151,9 @@ export GOROOT_BOOTSTRAP=$(brew --prefix go)/libexec
 ## end gvm setup
 
 #auto start tmux when kitty start
-if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
-  tmux attach || exec tmux new-session && exit;
-fi
+# if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
+#   tmux attach || exec tmux new-session && exit;
+# fi
 
 export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock
 
