@@ -1,0 +1,26 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = "$directory"
+right_format = "$time"
+add_newline = false
+
+[directory]
+format = "[$path]($style) "
+style = "green"
+truncation_length = 0
+truncate_to_repo = false
+
+[time]
+disabled = false
+format = "[$time]($style)"
+time_format = "%I:%M:%S %p"
+style = "dimmed white"
+
+[git_branch]
+disabled = true
+
+[git_status]
+disabled = true
+
+[character]
+disabled = true
