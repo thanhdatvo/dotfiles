@@ -1,6 +1,7 @@
-# .config/*
-# !.config/ghostty/
-# !.config/nvim/
-# !.config/kitty/
-# !.config/tmux/
-#
+.config/*
+!.config/ghostty/
+!.config/nvim/
+!.config/kitty/
+!.config/tmux/
+!.config/nushell/
+!.config/starship.toml
