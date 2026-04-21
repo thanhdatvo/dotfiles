@@ -1,5 +1,6 @@
 return {
   "mrcjkb/rustaceanvim",
+  version = "^9",
   config = function()
     -- Note: disable rust-analyzer to use bacon-ls
     vim.g.rustaceanvim = {
