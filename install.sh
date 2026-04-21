@@ -26,5 +26,7 @@ gvm use go1.26.2 --default
 brew install zoxide
 brew install pyenv
 brew install lazygit
-brew install fzf
 brew install gitmux
+brew install fzf
+brew install bat # better cat
+brew install lsd # better ls
