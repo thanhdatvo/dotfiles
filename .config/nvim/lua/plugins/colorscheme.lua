@@ -47,7 +47,18 @@ return {
   "folke/tokyonight.nvim",
   lazy = false,
   priority = 1000,
-  config = function()
+  opts = {
+    transparent = true,
+
+    on_highlights = function(hl, c)
+      hl.Normal = { bg = "NONE" }
+      hl.NormalFloat = { bg = "NONE" }
+      hl.FloatBorder = { bg = "NONE" }
+      hl.Pmenu = { bg = "NONE" }
+    end,
+  },
+  config = function(_, opts)
+    require("tokyonight").setup(opts)
     vim.cmd("colorscheme tokyonight-day")
   end,
 }

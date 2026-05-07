@@ -188,3 +188,66 @@ eval "$(pyenv init - zsh)"
 
 # for nu to use ~/.config/nushell/*.nu
 export XDG_CONFIG_HOME="$HOME/.config"
+
+
+# https://direnv.net/docs/hook.html
+eval "$(direnv hook zsh)"
+
+
+# [START] sgpt
+export OPENAI_API_KEY="$(security find-generic-password -a "$USER" -s "OPENAI_API_KEY" -w 2>/dev/null)"
+export CHAT_SESSION=nor
+
+_c() {
+  local prompt
+  if [[ -t 0 ]]; then
+    # No pipe/stdin: use normal arguments
+    prompt="$*"
+  else
+    # Pipe/heredoc: read all multiline input
+    prompt="$(cat)"
+  fi
+
+  echo "$(sgpt chat show "$CHAT_SESSION" | wc -c | tr -d ' ') tokens"
+  echo "---"
+  echo "$prompt"
+  # glow help to format markedown output
+  # width 999 so that glow will wrap lines
+  sgpt --chat "$CHAT_SESSION" "$prompt" | tee /tmp/sgpt-answer.md | glow 
+  # sgpt --chat "$CHAT_SESSION" "$prompt" > /tmp/sgpt-answer.md
+  markdownlint-cli2 --fix /tmp/sgpt-answer.md >/dev/null 2>&1
+  # nvim /tmp/sgpt-answer.md
+}
+
+# this help to accept ? as a 
+# character for prompt instead 
+# as a regex
+alias c='noglob _c'
+
+sc() {
+  sgpt chat show "$CHAT_SESSION" | tee /tmp/sgpt-answer.md | glow 
+  # sgpt chat show "$CHAT_SESSION" > /tmp/sgpt-answer.md
+  markdownlint-cli2 --fix /tmp/sgpt-answer.md >/dev/null 2>&1
+  # nvim /tmp/sgpt-answer.md
+}
+
+alias rc='sgpt chat rm "$CHAT_SESSION"' 
+
+# [END] sgpt
+
+# [START] kitty scrollback https://github.com/mikesmithgh/kitty-scrollback.nvim#example-setups
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+function kitty_scrollback_edit_command_line() { 
+  local VISUAL='~/.local/share/nvim/lazy/kitty-scrollback.nvim/scripts/edit_command_line.sh'
+  zle edit-command-line
+  zle kill-whole-line
+}
+zle -N kitty_scrollback_edit_command_line
+
+bindkey '^x^e' kitty_scrollback_edit_command_line
+# [END] kitty scrollback
+
+
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"

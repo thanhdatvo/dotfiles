@@ -30,3 +30,7 @@ brew install gitmux
 brew install fzf
 brew install bat # better cat
 brew install lsd # better ls
+
+brew install direnv
+brew install --cask 1password-cli
+brew install glow # to format markdown in terminal

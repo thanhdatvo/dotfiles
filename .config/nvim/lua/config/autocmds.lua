@@ -86,3 +86,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   group = ui_group,
   callback = set_transparent_ui_highlights,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = ui_group,
+  pattern = "leetcode",
+  callback = function()
+    vim.schedule(set_transparent_ui_highlights)
+  end,
+})
