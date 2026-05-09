@@ -5,3 +5,4 @@
 !.config/tmux/
 !.config/nushell/
 !.config/starship.toml
+!.config/gh-dash/

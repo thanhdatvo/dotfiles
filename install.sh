@@ -24,12 +24,19 @@ gvm use go1.26.2 --default
 
 # other utility tool
 brew install zoxide
+brew install bat # better cat
+brew install lsd # better ls
+
 brew install pyenv
 brew install lazygit
 brew install gitmux
+
 brew install fzf
-brew install bat # better cat
-brew install lsd # better ls
+brew install ripgrep
+
+brew install awscli
+brew install --cask session-manager-plugin
+brew install granted # switch aws assume role with ease
 
 brew install direnv
 brew install --cask 1password-cli
