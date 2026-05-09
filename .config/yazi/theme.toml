@@ -1,0 +1,7 @@
+#"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
+[flavor]
+dark = "tokyo-night"
+light = "tokyo-night"
+# dark = "kanagawa-dragon"
+# light = "kanagawa-dragon"

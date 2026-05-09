@@ -41,3 +41,6 @@ brew install granted # switch aws assume role with ease
 brew install direnv
 brew install --cask 1password-cli
 brew install glow # to format markdown in terminal
+
+brew install yazi
+brew install chafa

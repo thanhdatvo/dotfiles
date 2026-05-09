@@ -1,0 +1,29 @@
+[[plugin.deps]]
+use = "dedukun/relative-motions"
+rev = "a603d9e"
+hash = "e02a788e5b8ae0fb47fd0193dda589cc"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "4ffa48f"
+hash = "eff8ff12fa4e5f035a10d8aeeb4c258d"
+
+[[plugin.deps]]
+use = "Gallardo994/clippy"
+rev = "8ce5541"
+hash = "977c6f4ffceada33ced20d941f1defab"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "4ffa48f"
+hash = "c887903a63a2ff520081b6d90a4b3392"
+
+[[flavor.deps]]
+use = "BennyOe/tokyo-night"
+rev = "8e6296f"
+hash = "d9da921c3bd37ba32ee27a8a7a40461f"
+
+[[flavor.deps]]
+use = "marcosvnmelo/kanagawa-dragon"
+rev = "b9541e8"
+hash = "dc840cf225dbf6f0257617403ad43d8b"

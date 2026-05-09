@@ -2,15 +2,6 @@ return {
   "neovim/nvim-lspconfig",
   opts = {
     servers = {
-      -- nil_ls = {
-      --   settings = {
-      --     ["nil"] = {
-      --       formatting = {
-      --         command = { "alejandra" },
-      --       },
-      --     },
-      --   },
-      -- },
       dartls = {
         cmd = { "dart", "language-server", "--protocol=lsp" },
         filetypes = { "dart" },
