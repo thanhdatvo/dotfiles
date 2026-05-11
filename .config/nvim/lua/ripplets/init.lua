@@ -1,11 +1,12 @@
--- vim.filetype.add({
---   extension = {
---     ripple = "ripple", -- if your files are *.ripple
---     ripplets = "ripple", -- or whatever extension you use
---   },
--- })
--- -- ~/.config/nvim/lua/my_lsp/init.lua
---
+vim.filetype.add({
+  extension = {
+    tsrx = "ripple", -- if your files are *.ripple
+    ripple = "ripple", -- if your files are *.ripple
+    ripplets = "ripple", -- or whatever extension you use
+  },
+})
+-- ~/.config/nvim/lua/my_lsp/init.lua
+
 -- local M = {}
 --
 -- M.setup = function()

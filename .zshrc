@@ -251,3 +251,6 @@ bindkey '^x^e' kitty_scrollback_edit_command_line
 
 
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+
+# a trick to ignore command start with space from being stored in history
+# setopt HIST_IGNORE_SPACE

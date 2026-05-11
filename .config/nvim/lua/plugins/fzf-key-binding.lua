@@ -4,6 +4,7 @@ return {
     keys = {
       { "<leader>/", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
       { "<leader><space>", false },
+      { "<leader>,", false },
       --      { "<leader><space>", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
     },
     config = function()
