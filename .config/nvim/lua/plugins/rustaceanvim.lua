@@ -7,9 +7,17 @@ return {
       server = {
         default_settings = {
           ["rust-analyzer"] = {
-            cargo = {
-              -- features = { "test-support" },
-            },
+            -- procMacro = {
+            --   enable = true,
+            -- },
+            -- cargo = {
+            --   buildScripts = {
+            --     enable = true,
+            --   },
+            -- },
+            -- cargo = {
+            --   -- features = { "test-support" },
+            -- },
             checkOnSave = false,
             diagnostics = false,
           },

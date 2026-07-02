@@ -9,6 +9,29 @@ return {
   end,
   opts = {
     servers = {
+      yamlls = {
+        settings = {
+          yaml = {
+            validate = true,
+            completion = true,
+            hover = true,
+            schemaStore = {
+              enable = false,
+              url = "",
+            },
+            schemas = {
+              kubernetes = {
+                "k8s/*.yaml",
+                "k8s/*.yml",
+                "manifests/*.yaml",
+                "manifests/*.yml",
+                "*.k8s.yaml",
+                "*.k8s.yml",
+              },
+            },
+          },
+        },
+      },
       dartls = {
         cmd = { "dart", "language-server", "--protocol=lsp" },
         filetypes = { "dart" },

@@ -44,3 +44,67 @@ vim.keymap.set("n", "<leader>yd", function()
 end, { desc = "desc  desc  message" })
 
 vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking replaced text" })
+
+-- expand rust macro under cursor
+-- open a pop up window
+vim.keymap.set("n", "<leader>re", function()
+  local before = vim.api.nvim_list_wins()
+
+  vim.cmd.RustLsp("expandMacro")
+
+  vim.defer_fn(function()
+    local after = vim.api.nvim_list_wins()
+    local new_win = nil
+
+    for _, win in ipairs(after) do
+      local found = false
+      for _, old in ipairs(before) do
+        if win == old then
+          found = true
+          break
+        end
+      end
+
+      if not found then
+        new_win = win
+        break
+      end
+    end
+
+    if not new_win or not vim.api.nvim_win_is_valid(new_win) then
+      vim.notify("Could not find macro expansion window", vim.log.levels.WARN)
+      return
+    end
+
+    local buf = vim.api.nvim_win_get_buf(new_win)
+    vim.api.nvim_win_close(new_win, true)
+
+    local width = math.floor(vim.o.columns * 0.8)
+    local height = math.floor(vim.o.lines * 0.75)
+    local row = math.floor((vim.o.lines - height) / 2)
+    local col = math.floor((vim.o.columns - width) / 2)
+
+    local float_win = vim.api.nvim_open_win(buf, true, {
+      relative = "editor",
+      width = width,
+      height = height,
+      row = row,
+      col = col,
+      style = "minimal",
+      border = "rounded",
+      title = " Macro Expansion ",
+      title_pos = "center",
+    })
+
+    vim.bo[buf].filetype = "rust"
+    vim.wo[float_win].wrap = false
+    vim.wo[float_win].number = false
+    vim.wo[float_win].relativenumber = false
+
+    vim.keymap.set("n", "q", function()
+      if vim.api.nvim_win_is_valid(float_win) then
+        vim.api.nvim_win_close(float_win, true)
+      end
+    end, { buffer = buf, silent = true })
+  end, 100)
+end, { desc = "Rust expand macro in popup" })

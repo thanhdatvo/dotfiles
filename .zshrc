@@ -254,3 +254,7 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 # a trick to ignore command start with space from being stored in history
 # setopt HIST_IGNORE_SPACE
+[ -f ~/.kubectl-aliases/.kubectl_aliases ] && source ~/.kubectl-aliases/.kubectl_aliases
+
+export EDITOR=nvim
+export KUBE_EDITOR=nvim
