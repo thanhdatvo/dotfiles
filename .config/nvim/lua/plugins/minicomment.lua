@@ -7,6 +7,13 @@ return {
         -- if ft == "ripple" then
         --   return "<!-- %s -->"
         -- end
+        local ft = vim.bo.filetype
+
+        if ft == "tsrx" or ft == "ripple" then
+          return "// %s"
+        end
+
+        return vim.bo.commentstring
       end,
     },
   },

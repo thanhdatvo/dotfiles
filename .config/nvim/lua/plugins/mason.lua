@@ -15,6 +15,7 @@ return {
       "gitui",
       "gofumpt",
       "goimports",
+      "ts_ls",
       "golangci-lint",
       "gopls",
       "hadolint",

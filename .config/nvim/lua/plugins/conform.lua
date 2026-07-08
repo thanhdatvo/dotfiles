@@ -5,6 +5,7 @@ return {
       markdown = { "prettier" },
       ripple = { "prettier" }, -- ✅ add this line
       python = { "ruff_format" },
+      tsrx = { "prettier" },
     },
   },
 }
