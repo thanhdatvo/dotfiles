@@ -1,56 +1,33 @@
 return {
   "neovim/nvim-lspconfig",
-  -- init = function()
-  --   vim.filetype.add({
-  --     extension = {
-  --       -- tsrx = "ripple",
-  --       tsrx = "tsrx",
-  --       -- ripple = "ripple",
-  --     },
-  --   })
-  -- end,
-  -- config = function()
-  --   vim.lsp.config("ripple", {
-  --     cmd = { "ripple-language-server", "--stdio" },
-  --     filetypes = { "ripple", "tsrx" },
-  --     root_markers = {
-  --       "ripple.config.ts",
-  --       "vite.config.ts",
-  --       "package.json",
-  --       ".git",
-  --     },
-  --   })
-  --
-  --   vim.lsp.config("vtsls", {
-  --     cmd = { "vtsls", "--stdio" },
-  --     filetypes = {
-  --       "javascript",
-  --       "javascriptreact",
-  --       "typescript",
-  --       "typescriptreact",
-  --     },
-  --     root_markers = {
-  --       "package.json",
-  --       "tsconfig.json",
-  --       "jsconfig.json",
-  --       ".git",
-  --     },
-  --   })
-  --   vim.lsp.enable({ "vtsls", "ripple" })
-  --   -- vim.lsp.enable({ "ripple" })
-  -- end,
+  init = function()
+    vim.filetype.add({
+      extension = {
+        tsrx = "ripple",
+        -- tsrx = "tsrx",
+        -- ripple = "ripple",
+      },
+    })
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "ripple",
+      callback = function()
+        vim.lsp.start({
+          name = "ripple",
+          cmd = { "ripple-language-server", "--stdio" },
+          root_dir = vim.fs.root(0, {
+            "ripple.config.ts",
+            "ripple.config.js",
+            "vite.config.ts",
+            "vite.config.js",
+            "package.json",
+            ".git",
+          }),
+        })
+      end,
+    })
+  end,
   opts = {
     servers = {
-
-      -- vtsls = {
-      --   filetypes = {
-      --     "javascript",
-      --     "javascriptreact",
-      --     "typescript",
-      --     "typescriptreact",
-      --     "tsrx",
-      --   },
-      -- },
 
       yamlls = {
         settings = {
@@ -95,33 +72,20 @@ return {
           },
         },
       },
-      -- vtsls = {
-      --   filetypes = {
-      --     "javascript",
-      --     "javascriptreact",
-      --     "typescript",
-      --     "typescriptreact",
-      --     "tsrx",
-      --   },
-      -- },
       -- ripple = {
       --   cmd = { "ripple-language-server", "--stdio" },
-      --   filetypes = { "ripple", "tsrx" },
+      --   filetypes = { "ripple" },
       --   root_dir = function(fname)
-      --     return require("lspconfig.util").root_pattern("ripple.config.ts", "vite.config.ts", "package.json", ".git")(
-      --       fname
-      --     )
+      --     return require("lspconfig.util").root_pattern(
+      --       "ripple.config.ts",
+      --       "ripple.config.js",
+      --       "vite.config.ts",
+      --       "vite.config.js",
+      --       "package.json",
+      --       ".git"
+      --     )(fname)
       --   end,
       -- },
-      ripple = {
-        cmd = { "ripple-language-server", "--stdio" },
-        filetypes = { "ripple", "tsrx" },
-        root_dir = function(fname)
-          return require("lspconfig.util").root_pattern("ripple.config.ts", "vite.config.ts", "package.json", ".git")(
-            fname
-          )
-        end,
-      },
     },
   },
 }

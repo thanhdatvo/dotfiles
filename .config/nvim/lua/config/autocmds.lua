@@ -94,30 +94,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.schedule(set_transparent_ui_highlights)
   end,
 })
-
--- need this
--- vim.api.nvim_create_autocmd("LspAttach", {
---   callback = function(event)
---     local buf = event.buf
---
---     vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions jump1=true ignore_current_line=true<cr>", {
---       buffer = buf,
---       desc = "Goto Definition",
---     })
---
---     vim.keymap.set("n", "gr", "<cmd>FzfLua lsp_references jump1=true ignore_current_line=true<cr>", {
---       buffer = buf,
---       desc = "References",
---     })
---
---     vim.keymap.set("n", "gI", "<cmd>FzfLua lsp_implementations jump1=true ignore_current_line=true<cr>", {
---       buffer = buf,
---       desc = "Goto Implementation",
---     })
---
---     vim.keymap.set("n", "gy", "<cmd>FzfLua lsp_typedefs jump1=true ignore_current_line=true<cr>", {
---       buffer = buf,
---       desc = "Goto T[y]pe Definition",
---     })
---   end,
--- })

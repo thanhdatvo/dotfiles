@@ -39,14 +39,34 @@ return {
     --   },
     -- },
   },
-  config = function(_, opts)
-    local dap = require("dap")
-    local dapui = require("dapui")
-    dapui.setup(opts)
-    dap.listeners.before.event_terminated["dapui_config"] = function()
-      -- print("before event terminated")
-      -- keep dap UI open when the debugger is stopped
-      dapui.open({})
-    end
+  init = function()
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "LazyLoad",
+      callback = function(event)
+        if event.data ~= "nvim-dap-ui" then
+          return
+        end
+
+        local dap = require("dap")
+        local dapui = require("dapui")
+
+        -- Disable LazyVim / dap-ui default auto-close behavior
+        dap.listeners.before.event_terminated["dapui_config"] = nil
+        dap.listeners.before.event_exited["dapui_config"] = nil
+
+        -- Optional: force it to stay open after debugger stops
+        dap.listeners.after.event_terminated["keep_dapui_open"] = function()
+          vim.schedule(function()
+            dapui.open({})
+          end)
+        end
+
+        dap.listeners.after.event_exited["keep_dapui_open"] = function()
+          vim.schedule(function()
+            dapui.open({})
+          end)
+        end
+      end,
+    })
   end,
 }
