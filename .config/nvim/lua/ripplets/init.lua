@@ -1,10 +1,18 @@
 vim.filetype.add({
   extension = {
     tsrx = "ripple", -- if your files are *.ripple
+    -- tsrx = "tsrx",
     ripple = "ripple", -- if your files are *.ripple
     ripplets = "ripple", -- or whatever extension you use
   },
 })
+
+vim.lsp.config("ripple", {
+  cmd = { "ripple-language-server", "--stdio" },
+  filetypes = { "ripple" },
+  root_markers = { "package.json", ".git" },
+})
+vim.lsp.enable("ripple")
 -- ~/.config/nvim/lua/my_lsp/init.lua
 
 -- local M = {}

@@ -1,14 +1,57 @@
 return {
   "neovim/nvim-lspconfig",
-  init = function()
-    vim.filetype.add({
-      extension = {
-        tsrx = "ripple",
-      },
-    })
-  end,
+  -- init = function()
+  --   vim.filetype.add({
+  --     extension = {
+  --       -- tsrx = "ripple",
+  --       tsrx = "tsrx",
+  --       -- ripple = "ripple",
+  --     },
+  --   })
+  -- end,
+  -- config = function()
+  --   vim.lsp.config("ripple", {
+  --     cmd = { "ripple-language-server", "--stdio" },
+  --     filetypes = { "ripple", "tsrx" },
+  --     root_markers = {
+  --       "ripple.config.ts",
+  --       "vite.config.ts",
+  --       "package.json",
+  --       ".git",
+  --     },
+  --   })
+  --
+  --   vim.lsp.config("vtsls", {
+  --     cmd = { "vtsls", "--stdio" },
+  --     filetypes = {
+  --       "javascript",
+  --       "javascriptreact",
+  --       "typescript",
+  --       "typescriptreact",
+  --     },
+  --     root_markers = {
+  --       "package.json",
+  --       "tsconfig.json",
+  --       "jsconfig.json",
+  --       ".git",
+  --     },
+  --   })
+  --   vim.lsp.enable({ "vtsls", "ripple" })
+  --   -- vim.lsp.enable({ "ripple" })
+  -- end,
   opts = {
     servers = {
+
+      -- vtsls = {
+      --   filetypes = {
+      --     "javascript",
+      --     "javascriptreact",
+      --     "typescript",
+      --     "typescriptreact",
+      --     "tsrx",
+      --   },
+      -- },
+
       yamlls = {
         settings = {
           yaml = {
@@ -52,10 +95,27 @@ return {
           },
         },
       },
-
+      -- vtsls = {
+      --   filetypes = {
+      --     "javascript",
+      --     "javascriptreact",
+      --     "typescript",
+      --     "typescriptreact",
+      --     "tsrx",
+      --   },
+      -- },
+      -- ripple = {
+      --   cmd = { "ripple-language-server", "--stdio" },
+      --   filetypes = { "ripple", "tsrx" },
+      --   root_dir = function(fname)
+      --     return require("lspconfig.util").root_pattern("ripple.config.ts", "vite.config.ts", "package.json", ".git")(
+      --       fname
+      --     )
+      --   end,
+      -- },
       ripple = {
         cmd = { "ripple-language-server", "--stdio" },
-        filetypes = { "ripple" },
+        filetypes = { "ripple", "tsrx" },
         root_dir = function(fname)
           return require("lspconfig.util").root_pattern("ripple.config.ts", "vite.config.ts", "package.json", ".git")(
             fname

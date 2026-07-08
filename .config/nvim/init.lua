@@ -3,9 +3,9 @@ require("config.lazy")
 require("custom.case_replace_command")
 require("custom.run_flutter_command")
 
-vim.filetype.add({
-  extension = {
-
-    svx = "svelte",
-  },
-})
+-- vim.filetype.add({
+--   extension = {
+--
+--     svx = "svelte",
+--   },
+-- })

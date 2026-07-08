@@ -2,6 +2,36 @@ return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {},
   run = ":TSUpdate",
+
+  -- init = function()
+  --   local parser_path = vim.fn.expand("~/.local/share/nvim/site/parser/tsrx.so")
+  --
+  --   vim.treesitter.language.add("tsrx", {
+  --     path = parser_path,
+  --   })
+  --
+  --   vim.treesitter.language.register("tsrx", "tsrx")
+  --   vim.filetype.add({
+  --     extension = {
+  --       tsrx = "tsrx",
+  --     },
+  --   })
+  -- end,
+  --
+  -- config = function()
+  --   local parsers = require("nvim-treesitter.parsers")
+  --
+  --   parsers.tsrx = {
+  --     install_info = {
+  --       url = "https://github.com/Xander-de-Keijzer/tree-sitter-tsrx",
+  --       files = { "src/parser.c", "src/scanner.c" },
+  --       branch = "main",
+  --       revision = "main",
+  --     },
+  --     tier = 3,
+  --   }
+  -- end,
+
   opts = {
     ensure_installed = {
       "bash",
@@ -55,6 +85,9 @@ return {
       "xml",
       "yaml",
       "tsx",
+
+      -- custom parser
+      --      "tsrx",
     },
     highlight = {
       -- enable = false,
