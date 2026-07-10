@@ -2,6 +2,7 @@ local function press_enter()
   print("press_enter")
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
 end
+
 local function wait_for_ui_and_select(option_key, callback)
   local function execute()
     print("select" .. option_key)

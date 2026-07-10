@@ -94,3 +94,23 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.schedule(set_transparent_ui_highlights)
   end,
 })
+
+-- disable heavy features for Dart SDK files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = {
+    "*/flutter_sdk/*",
+    "*/dart-sdk/*",
+    "*/.pub-cache/*",
+  },
+  callback = function(args)
+    vim.bo[args.buf].swapfile = false
+    vim.bo[args.buf].buflisted = false
+    vim.bo[args.buf].modifiable = false
+
+    vim.schedule(function()
+      vim.cmd("TSBufDisable highlight")
+      vim.cmd("TSBufDisable indent")
+      vim.diagnostic.disable(args.buf)
+    end)
+  end,
+})

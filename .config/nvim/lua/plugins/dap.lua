@@ -1,7 +1,7 @@
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
-    "rcarriga/nvim-dap-ui",
+    -- "rcarriga/nvim-dap-ui",
   },
   optional = true,
   opts = function()

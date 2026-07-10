@@ -1,29 +1,53 @@
 return {
   "mrcjkb/rustaceanvim",
   version = "^9",
-  config = function()
-    -- Note: disable rust-analyzer to use bacon-ls
+
+  init = function()
     vim.g.rustaceanvim = {
       server = {
         default_settings = {
           ["rust-analyzer"] = {
-            -- procMacro = {
-            --   enable = true,
-            -- },
-            -- cargo = {
-            --   buildScripts = {
-            --     enable = true,
-            --   },
-            -- },
-            -- cargo = {
-            --   -- features = { "test-support" },
-            -- },
             checkOnSave = false,
             diagnostics = false,
           },
         },
       },
+
+      dap = {
+        autoload_configurations = false,
+      },
     }
+
+    -- clear default dap configuration for launch rust
+    local dap = require("dap")
+    dap.configurations.rust = {}
+  end,
+  config = function()
+    -- -- Note: disable rust-analyzer to use bacon-ls
+    -- vim.g.rustaceanvim = {
+    --   dap = {
+    --     autoload_configurations = false,
+    --   },
+    --   server = {
+    --     default_settings = {
+    --       ["rust-analyzer"] = {
+    --         -- procMacro = {
+    --         --   enable = true,
+    --         -- },
+    --         -- cargo = {
+    --         --   buildScripts = {
+    --         --     enable = true,
+    --         --   },
+    --         -- },
+    --         -- cargo = {
+    --         --   -- features = { "test-support" },
+    --         -- },
+    --         checkOnSave = false,
+    --         diagnostics = false,
+    --       },
+    --     },
+    --   },
+    -- }
 
     local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.11.5/"
     local codelldb_path = extension_path .. "adapter/codelldb"
@@ -40,7 +64,8 @@ return {
     end
 
     local cfg = require("rustaceanvim.config")
-    local lldb_adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
+    local codelldb_adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
+
     local program = function(callback, config)
       vim.fn.jobstart("cargo build", {
         stdout_buffered = true,
@@ -60,7 +85,7 @@ return {
             if code == 0 then
               vim.notify("✅ Build succeeded", vim.log.levels.INFO)
 
-              callback(lldb_adapter) -- continue to start the debug adapter
+              callback(codelldb_adapter) -- continue to start the debug adapter
             else
               vim.notify("❌ Build failed. Debug cancelled.", vim.log.levels.ERROR)
             end
@@ -70,6 +95,26 @@ return {
     end
 
     local dap = require("dap")
-    dap.adapters.lldb = program
+    dap.adapters.codelldb = program
+
+    -- dap.configurations.rust = {
+    --   {
+    --     name = "Debug executable",
+    --     type = "codelldb",
+    --     request = "launch",
+    --     program = function()
+    --       return vim.fn.getcwd() .. "/target/debug/rust-dsa"
+    --     end,
+    --     cwd = "${workspaceFolder}",
+    --     stopOnEntry = false,
+    --
+    --     -- Important: show program output in a terminal
+    --     terminal = "integrated",
+    --
+    --     env = {
+    --       RUST_LOG = "info",
+    --     },
+    --   },
+    -- }
   end,
 }

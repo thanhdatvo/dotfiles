@@ -52,13 +52,13 @@ return {
           },
         },
       },
-      dartls = {
-        cmd = { "dart", "language-server", "--protocol=lsp" },
-        filetypes = { "dart" },
-        root_dir = function(fname)
-          return require("lspconfig.util").root_pattern("pubspec.yaml", ".git")(fname) or vim.fn.getcwd()
-        end,
-      },
+      -- dartls = {
+      --   cmd = { "dart", "language-server", "--protocol=lsp" },
+      --   filetypes = { "dart" },
+      --   root_dir = function(fname)
+      --     return require("lspconfig.util").root_pattern("pubspec.yaml", ".git")(fname) or vim.fn.getcwd()
+      --   end,
+      -- },
 
       pyright = {
         settings = {

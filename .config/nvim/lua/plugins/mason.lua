@@ -7,7 +7,7 @@ return {
       "cmakelang",
       "cmakelint",
       "codelldb",
-      "dart-debug-adapter",
+      -- "dart-debug-adapter",
       "debugpy",
       "delve",
       "docker-compose-language-service",
