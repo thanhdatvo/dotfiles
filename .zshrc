@@ -258,3 +258,4 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 export EDITOR=nvim
 export KUBE_EDITOR=nvim
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
