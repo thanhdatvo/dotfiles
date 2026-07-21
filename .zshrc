@@ -259,3 +259,13 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export EDITOR=nvim
 export KUBE_EDITOR=nvim
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# eza alias
+unalias ls 2>/dev/null
+unalias ll 2>/dev/null
+unalias lsa 2>/dev/null
+unalias tree 2>/dev/null
+
+alias ls='eza --icons=auto'
+alias ll='eza -lah --icons=auto --git'
+alias tree='eza --tree --icons=auto'
