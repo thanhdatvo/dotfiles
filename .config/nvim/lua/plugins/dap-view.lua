@@ -10,7 +10,7 @@ return {
     "mfussenegger/nvim-dap",
   },
 
-  -- enabled = false,
+  enabled = false,
   opts = {
     debug_mode = true,
     winbar = {

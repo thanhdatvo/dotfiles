@@ -146,8 +146,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 ## these set tip is for gvm
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-export GOROOT_BOOTSTRAP=$(brew --prefix go)/libexec
+# [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+# export GOROOT_BOOTSTRAP=$(brew --prefix go)/libexec
 ## end gvm setup
 
 #auto start tmux when kitty start
@@ -269,3 +269,5 @@ unalias tree 2>/dev/null
 alias ls='eza --icons=auto'
 alias ll='eza -lah --icons=auto --git'
 alias tree='eza --tree --icons=auto'
+
+export EZA_CONFIG_DIR="$HOME/.config/eza"
