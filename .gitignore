@@ -9,3 +9,6 @@
 !.config/yazi/
 flavors/
 # preview.png
+
+# rust build folder
+target/

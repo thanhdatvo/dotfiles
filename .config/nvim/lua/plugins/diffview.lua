@@ -12,19 +12,17 @@ return {
   },
   keys = {
     {
-      "<leader>gd",
-      "<cmd>DiffviewOpen<cr>",
-      desc = "Open Git diff",
-    },
-    {
-      "<leader>gD",
-      "<cmd>DiffviewClose<cr>",
-      desc = "Close Git diff",
-    },
-    {
       "<leader>gh",
-      "<cmd>DiffviewFileHistory %<cr>",
-      desc = "Current file history",
+      function()
+        local view = require("diffview.lib").get_current_view()
+
+        if view then
+          vim.cmd("DiffviewClose")
+        else
+          vim.cmd("DiffviewFileHistory %")
+        end
+      end,
+      desc = "Toggle Current File History",
     },
   },
 }
