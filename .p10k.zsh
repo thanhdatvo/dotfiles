@@ -56,9 +56,38 @@
     # prompt_char               # prompt symbol
   )
 
+  prompt_parent_dir() {
+    emulate -L zsh
+
+    local path="${PWD/#$HOME/~}"
+    local -a parts
+    parts=("${(@s:/:)path}")
+
+    local count=${#parts}
+    local output
+    local i
+
+    if (( count <= 3 )); then
+      output="$path"
+    else
+      output="${parts[1]}"
+
+      # Shorten everything before the immediate parent.
+      for (( i = 2; i < count - 1; i++ )); do
+        output+="/${parts[i][1]}"
+      done
+
+      # Keep immediate parent and current directory fully visible.
+      output+="/${parts[count - 1]}/${parts[count]}"
+    fi
+
+    p10k segment -f '#39FF14' -t "$output"
+  }
+
   # Right prompt segments.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-    dir                       # current directory
+    parent_dir
+    # dir                       # current directory
     command_execution_time    # previous command duration
     # virtualenv                # python virtual environment
     # context                   # user@host
@@ -73,7 +102,33 @@
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX=
   typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=
   # [END] disable curve
-  
+prompt_parent_dir() {
+  emulate -L zsh
+
+  local path="${PWD/#$HOME/~}"
+  local -a parts
+  parts=("${(@s:/:)path}")
+
+  local count=${#parts}
+  local output
+  local i
+
+  if (( count <= 3 )); then
+    output="$path"
+  else
+    output="${parts[1]}"
+
+    # Shorten everything before the immediate parent.
+    for (( i = 2; i < count - 1; i++ )); do
+      output+="/${parts[i][1]}"
+    done
+
+    # Keep immediate parent and current directory fully visible.
+    output+="/${parts[count - 1]}/${parts[count]}"
+  fi
+
+  p10k segment -f '#39FF14' -t "$output"
+}  
   # Basic style options that define the overall prompt look.
   typeset -g POWERLEVEL9K_BACKGROUND=                            # transparent background
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_{LEFT,RIGHT}_WHITESPACE=  # no surrounding whitespace
