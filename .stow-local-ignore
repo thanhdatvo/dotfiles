@@ -1,3 +1,4 @@
-install.sh
-#.zshrc
-.jj/
+^/\.git$
+^/\.git/
+^/\.stow-local-ignore$
+^/install\.sh$

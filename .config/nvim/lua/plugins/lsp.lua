@@ -60,6 +60,18 @@ return {
       --   end,
       -- },
 
+      -- pyright = {
+      --   settings = {
+      --     pyright = {
+      --       disableOrganizeImports = true,
+      --     },
+      --     python = {
+      --       analysis = {
+      --         ignore = { "*" },
+      --       },
+      --     },
+      --   },
+      -- },
       pyright = {
         settings = {
           pyright = {
@@ -67,11 +79,16 @@ return {
           },
           python = {
             analysis = {
-              ignore = { "*" },
+              autoSearchPaths = true,
+              diagnosticMode = "workspace",
+              typeCheckingMode = "basic",
+              useLibraryCodeForTypes = true,
             },
           },
         },
       },
+
+      ruff = {},
       -- ripple = {
       --   cmd = { "ripple-language-server", "--stdio" },
       --   filetypes = { "ripple" },
@@ -86,6 +103,20 @@ return {
       --     )(fname)
       --   end,
       -- },
+    },
+    setup = {
+      ruff = function()
+        vim.api.nvim_create_autocmd("LspAttach", {
+          group = vim.api.nvim_create_augroup("disable_ruff_hover", { clear = true }),
+          callback = function(args)
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+            if client and client.name == "ruff" then
+              client.server_capabilities.hoverProvider = false
+            end
+          end,
+        })
+      end,
     },
   },
 }

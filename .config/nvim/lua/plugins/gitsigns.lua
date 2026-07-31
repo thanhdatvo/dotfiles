@@ -1,6 +1,7 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = "LazyFile",
+  enabled = false,
   opts = {
     current_line_blame_opts = {
       delay = 0,

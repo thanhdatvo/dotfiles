@@ -21,7 +21,7 @@ return {
           "--no-heading",
           "--color=always",
           "--smart-case",
-          "--max-filesize 50K",
+          "--max-filesize 200K",
           "--glob=!**/.dart_tool/*",
           "--glob=!**/.build/*",
           "--glob=!**/node_modules/*",
