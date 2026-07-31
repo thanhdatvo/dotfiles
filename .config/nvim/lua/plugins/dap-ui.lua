@@ -1,7 +1,7 @@
 return {
   "rcarriga/nvim-dap-ui",
   dependencies = { "nvim-neotest/nvim-nio" },
-  enabled = false,
+  enabled = true,
   opts = {
     layouts = {
       {
