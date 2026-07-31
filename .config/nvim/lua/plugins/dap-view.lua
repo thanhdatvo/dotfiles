@@ -4,7 +4,6 @@ return {
   branch = "feature/preserve-cursor-on-tab-switch",
   -- "igorlfs/nvim-dap-view",
 
-  enabled = false,
   -- name = "nvim-dap-view",
   -- dir = "~/Work/lua-projects/nvim-dap-view",
   dependencies = {
