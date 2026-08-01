@@ -146,8 +146,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 ## these set tip is for gvm
-# [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-# export GOROOT_BOOTSTRAP=$(brew --prefix go)/libexec
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+export GOROOT_BOOTSTRAP=$(brew --prefix go)/libexec
 ## end gvm setup
 
 #auto start tmux when kitty start
