@@ -1,3 +1,5 @@
+-- ~/.config/nvim/lua/config/autocmds.lua
+
 vim.filetype.add({
   extension = {
     tsrx = "ripple", -- if your files are *.ripple

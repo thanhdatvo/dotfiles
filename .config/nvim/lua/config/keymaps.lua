@@ -108,3 +108,68 @@ vim.keymap.set("n", "<leader>re", function()
     end, { buffer = buf, silent = true })
   end, 100)
 end, { desc = "Rust expand macro in popup" })
+
+-- [START] DAP UI
+
+local dap_terminal = {
+  buf = nil,
+  win = nil,
+}
+
+local function open_dap_terminal_float()
+  if dap_terminal.buf and vim.api.nvim_buf_is_valid(dap_terminal.buf) then
+    local width = math.floor(vim.o.columns * 0.8)
+    local height = math.floor(vim.o.lines * 0.8)
+
+    dap_terminal.win = vim.api.nvim_open_win(dap_terminal.buf, true, {
+      relative = "editor",
+      width = width,
+      height = height,
+      row = math.floor((vim.o.lines - height) / 2),
+      col = math.floor((vim.o.columns - width) / 2),
+      style = "minimal",
+      border = "rounded",
+      title = " Application ",
+      title_pos = "center",
+    })
+
+    vim.cmd("startinsert")
+    return
+  end
+
+  vim.notify("DAP application terminal has not been created yet")
+end
+
+local dap = require("dap")
+
+dap.defaults.fallback.force_external_terminal = false
+dap.defaults.fallback.terminal_win_cmd = "belowright new"
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function(args)
+    local bufname = vim.api.nvim_buf_get_name(args.buf)
+
+    -- You may need to adjust this condition for your adapter.
+    if bufname:match("dap") then
+      dap_terminal.buf = args.buf
+    end
+  end,
+})
+
+vim.keymap.set({ "n", "t" }, "<leader>at", function()
+  if vim.api.nvim_get_mode().mode:sub(1, 1) == "t" then
+    vim.cmd([[stopinsert]])
+  end
+
+  if dap_terminal.win and vim.api.nvim_win_is_valid(dap_terminal.win) then
+    vim.api.nvim_win_close(dap_terminal.win, false)
+    dap_terminal.win = nil
+  else
+    open_dap_terminal_float()
+  end
+end, {
+  desc = "Toggle DAP application terminal",
+  silent = true,
+})
+
+-- [END] DAP UI

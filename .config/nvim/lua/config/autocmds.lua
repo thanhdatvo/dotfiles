@@ -114,3 +114,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     end)
   end,
 })
+
+-- Update file type for ruby
+vim.filetype.add({
+  filename = {
+    Appfile = "ruby",
+    Fastfile = "ruby",
+  },
+})

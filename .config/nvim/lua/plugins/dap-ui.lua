@@ -17,7 +17,7 @@ return {
       {
         elements = {
           "repl", -- debugging console
-          "console", -- or use 'terminal' below
+          -- "console", -- or use 'terminal' below
         },
         size = 0.25,
         position = "bottom",

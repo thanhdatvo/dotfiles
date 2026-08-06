@@ -1,87 +1,71 @@
 return {
   "nvim-flutter/flutter-tools.nvim",
   lazy = false,
+
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "stevearc/dressing.nvim", -- optional for vim.ui.select
+    "stevearc/dressing.nvim",
     "mfussenegger/nvim-dap",
   },
-  -- config = true,
+
   config = function()
     local dap = require("dap")
-    dap.adapters.flutter = {
-      type = "executable",
-      command = "fvm",
-      args = { "flutter", "debug_adapter" },
-    }
-    dap.adapters.dart = {
-      type = "executable",
-      command = "fvm",
-      -- args = { "dart", "debug_adapter" },
 
-      args = { "flutter", "debug_adapter" },
-    }
-    require("flutter-tools").setup_project({
-      -- name = "Web",
-      -- device = "chrome",
-      -- web_port = "3000",
-      -- additional_args = { "--wasm" },
-    })
+    local flutter_path = vim.fn.exepath("flutter")
+
+    if flutter_path == "" then
+      vim.notify("Flutter executable not found. Check mise activation and PATH.", vim.log.levels.ERROR)
+      return
+    end
+
+    -- /path/to/flutter/bin/flutter -> /path/to/flutter
+    local flutter_sdk = vim.fs.dirname(vim.fs.dirname(flutter_path))
+    local dart_sdk = flutter_sdk .. "/bin/cache/dart-sdk"
+
     require("flutter-tools").setup({
-      fvm = true,
+      fvm = false,
+
+      -- This may also be omitted because flutter-tools can find
+      -- `flutter` automatically from PATH.
+      flutter_path = flutter_path,
+
       debugger = {
         enabled = true,
-        register_configurations = function(paths)
-          require("dap.ext.vscode").load_launchjs()
-        end,
-        -- register_configurations = function(_)
-        --   -- dap.configurations.dart = {
-        --   --   {
-        --   --     type = "dart",
-        --   --     request = "launch",
-        --   --     name = "Flutter Chrome",
-        --   --     dartSdkPath = "fvm/flutter_sdk/bin/cache/dart-sdk/bin/dart",
-        --   --     flutterSdkPath = "fvm/flutter_sdk",
-        --   --     program = "${workspaceFolder}/lib/main.dart",
-        --   --     cwd = "${workspaceFolder}",
-        --   --     toolArgs = {
-        --   --       "-d",
-        --   --       "chrome",
-        --   --       "--web-experimental-hot-reload",
-        --   --     },
-        --   --   },
-        --   --   {
-        --   --     type = "dart",
-        --   --     request = "launch",
-        --   --     name = "Flutter macOS",
-        --   --     dartSdkPath = "fvm/flutter_sdk/bin/cache/dart-sdk/bin/dart",
-        --   --     flutterSdkPath = "fvm/flutter_sdk",
-        --   --     program = "${workspaceFolder}/lib/main.dart",
-        --   --     cwd = "${workspaceFolder}",
-        --   --     toolArgs = {
-        --   --       "-d",
-        --   --       "macos",
-        --   --     },
-        --   --   },
-        --   -- }
-        -- end,
       },
+
       dev_log = {
         enabled = false,
       },
-      settings = {
-        dart = {
-          analysisExcludedFolders = {
-            vim.fn.expand("$PWD/android"),
-            vim.fn.expand("$PWD/ios"),
-            vim.fn.expand("$PWD/web"),
-            vim.fn.expand("$PWD/build"),
-            vim.fn.expand("$PWD/.dart_tool"),
-            vim.fn.expand("$PWD/.idea"),
-            vim.fn.expand("$PWD"),
-          },
+    })
+
+    dap.adapters.dart = {
+      type = "executable",
+      command = flutter_path,
+      args = { "debug_adapter" },
+    }
+
+    dap.configurations.dart = {
+      {
+        name = "Flutter Chrome",
+        type = "dart",
+        request = "launch",
+        program = "${workspaceFolder}/lib/main.dart",
+        cwd = "${workspaceFolder}",
+
+        flutterSdkPath = flutter_sdk,
+        dartSdkPath = dart_sdk,
+
+        toolArgs = {
+          "-d",
+          "chrome",
         },
       },
+    }
+
+    vim.keymap.set("n", "<leader>dc", function()
+      dap.run(dap.configurations.dart[1])
+    end, {
+      desc = "Debug Flutter Chrome",
     })
   end,
 }
