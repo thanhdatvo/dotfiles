@@ -112,10 +112,6 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/opt/homebrew/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -265,3 +261,4 @@ alias tree='eza --tree --icons=auto'
 
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 eval "$(mise activate zsh)"
+alias nv=nvim

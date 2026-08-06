@@ -3,6 +3,7 @@ return {
     "nickjvandyke/opencode.nvim",
     version = "*",
 
+    enabled = false,
     config = function()
       vim.g.opencode_opts = {}
 

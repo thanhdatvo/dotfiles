@@ -4,6 +4,7 @@ return {
     dependencies = {
       "folke/snacks.nvim",
     },
+    enabled = false,
     opts = {
       focus_after_send = true,
 
