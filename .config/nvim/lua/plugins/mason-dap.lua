@@ -8,6 +8,7 @@ return {
       "cmakelint",
       "codelldb",
       -- "dart-debug-adapter",
+      "ruby-lsp",
       "debugpy",
       "delve",
       "docker-compose-language-service",

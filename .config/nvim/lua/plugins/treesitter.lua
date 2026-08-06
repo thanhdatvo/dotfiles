@@ -73,6 +73,7 @@ return {
       "ripple",
       "ron",
       "rst",
+      "ruby",
       "rust",
       "sql",
       "svelte",

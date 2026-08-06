@@ -1,5 +1,5 @@
 return {
-  "jay-babu/mason.nvim",
+  "mason-org/mason.nvim",
   --disable keymap
   keys = {
     { "<leader>gg", false },

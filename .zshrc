@@ -124,9 +124,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 [[ -f $HOME/.dart-cli-completion/zsh-config.zsh ]] && . $HOME/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
-export PATH="$HOME/fvm/default/bin/:$PATH"
-export PATH="$HOME/fvm/default/bin/cache/dark-sdk/bin:$PATH"
-
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$ANDROID_HOME/emulator:$PATH
@@ -145,10 +142,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 
-## these set tip is for gvm
-# [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-# export GOROOT_BOOTSTRAP=$(brew --prefix go)/libexec
-## end gvm setup
 
 #auto start tmux when kitty start
 # if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
@@ -271,3 +264,4 @@ alias ll='eza -lah --icons=auto --git'
 alias tree='eza --tree --icons=auto'
 
 export EZA_CONFIG_DIR="$HOME/.config/eza"
+eval "$(mise activate zsh)"
