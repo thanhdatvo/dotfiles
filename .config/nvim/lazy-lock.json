@@ -23,6 +23,7 @@
   "dioxus.nvim": { "branch": "main", "commit": "311558c09951da3c23d8feb830c48629cdb42db4" },
   "dockyard.nvim": { "branch": "main", "commit": "0bf805284dee18d6232ef0a5d86dd7a6d2d27709" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
+  "droast.nvim": { "branch": "main", "commit": "06fafb1e81a52f8f56b82025873c9d907a9b98c5" },
   "flash.nvim": { "branch": "main", "commit": "b6346946d10d07998efee029fb0f7a593806d0cd" },
   "flutter-tools.nvim": { "branch": "main", "commit": "7d1acfd139215e02d2784733af69a61aaebe06e8" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
