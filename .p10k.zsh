@@ -95,10 +95,11 @@
   )
 
   # Add new type after left prompt.
-  typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=false
+  typeset -g POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
   # [START] disable curve
-  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{46}-%f'
+  # typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX=
   typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=
   # [END] disable curve
@@ -257,27 +258,13 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
 
-# preexec() {
-#   #echo ""
-#   echo " <"
-# }
-#
-# precmd() {
-#   echo " >"
-#   #echo ""
-#   echo " -"
-# }
 
 preexec() {
-  # echo "\e[32m <\e[0m"
-  echo "\e[38;5;46m <\e[0m"
+  echo "\e[38;5;46m<\e[0m"
 }
 
 precmd() {
-  #echo "\e[34m >\e[0m"
-  echo "\e[38;5;46m >\e[0m"
-  #echo "\e[33m -\e[0m"
-  echo "\e[38;5;46m -\e[0m"
+  echo "\e[38;5;46m>\e[0m"
 }
 
 # truncate_middle

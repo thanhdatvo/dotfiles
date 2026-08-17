@@ -15,10 +15,6 @@ return {
         terminal_mappings = true,
         start_in_insert = true,
         close_on_exit = true,
-        on_close = function(term)
-          -- sent CRTL+L to clear the terminal screen
-          term:send(" \12")
-        end,
       },
     },
   },

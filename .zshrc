@@ -261,4 +261,11 @@ alias tree='eza --tree --icons=auto'
 
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 eval "$(mise activate zsh)"
+
 alias nv=nvim
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+source ~/.zsh-hacks.zsh
