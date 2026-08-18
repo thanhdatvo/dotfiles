@@ -267,10 +267,10 @@ alias lt='eza --tree --icons=auto --group-directories-first --ignore-glob="node_
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 eval "$(mise activate zsh)"
 
-alias n=nvim
+alias nv=nvim
 
 # atuin
-#. "$HOME/.atuin/bin/env"
+. "$HOME/.atuin/bin/env"
 export ATUIN_NOBIND="true"
 eval "$(atuin init zsh)"
 #bindkey '^[[B' atuin-search

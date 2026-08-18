@@ -67,8 +67,20 @@ return {
     local codelldb_adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
 
     local program = function(callback, config)
-      vim.fn.jobstart("cargo build", {
+      local workspace = config.cwd
+
+      if workspace == nil or workspace == "${workspaceFolder}" then
+        workspace = vim.fn.getcwd()
+      end
+
+      local cargo_dir = workspace .. "/src-tauri"
+
+      vim.fn.jobstart({ "cargo", "build" }, {
+        cwd = cargo_dir,
+
         stdout_buffered = true,
+        stderr_buffered = true,
+
         on_stdout = function(_, data)
           if data then
             for _, line in ipairs(data) do
@@ -80,14 +92,26 @@ return {
             end
           end
         end,
+
+        on_stderr = function(_, data)
+          if data then
+            for _, line in ipairs(data) do
+              if line ~= "" then
+                vim.schedule(function()
+                  vim.notify("[cargo] " .. line)
+                end)
+              end
+            end
+          end
+        end,
+
         on_exit = function(_, code)
           vim.schedule(function()
             if code == 0 then
-              vim.notify("✅ Build succeeded", vim.log.levels.INFO)
-
-              callback(codelldb_adapter) -- continue to start the debug adapter
+              vim.notify("✅ Build succeeded")
+              callback(codelldb_adapter)
             else
-              vim.notify("❌ Build failed. Debug cancelled.", vim.log.levels.ERROR)
+              vim.notify("❌ Build failed. Exit code: " .. code, vim.log.levels.ERROR)
             end
           end)
         end,

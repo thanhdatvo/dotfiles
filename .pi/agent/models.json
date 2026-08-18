@@ -1,5 +1,18 @@
 {
   "providers": {
+    "local-openai": {
+      "baseUrl": "http://localhost:7777/v1",
+      "api": "openai-responses",
+      "apiKey": "$OPENAI_API_KEY",
+      "models": [
+        {
+          "id": "gpt-5-mini",
+          "name": "GPT-5 mini",
+          "contextWindow": 400000,
+          "maxTokens": 128000
+        }
+      ]
+    },
     "amazon-bedrock": {
       "models": [
         {
