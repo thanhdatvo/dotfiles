@@ -1,0 +1,12 @@
+{
+  "providers": {
+    "amazon-bedrock": {
+      "models": [
+        {
+          "id": "arn:aws:bedrock:us-east-1:062025572888:application-inference-profile/5mr5ydv3ckxx",
+          "name": "Claude Sonnet 4.6"
+        }
+      ]
+    }
+  }
+}

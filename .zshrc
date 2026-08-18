@@ -249,23 +249,33 @@ export EDITOR=nvim
 export KUBE_EDITOR=nvim
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
+export LS_COLORS="$(vivid generate tokyonight-moon)"
+
 # eza alias
 unalias ls 2>/dev/null
 unalias ll 2>/dev/null
 unalias lsa 2>/dev/null
 unalias tree 2>/dev/null
 
-alias ls='eza --icons=auto'
-alias ll='eza -lah --icons=auto --git'
-alias tree='eza --tree --icons=auto'
+alias ls='eza --icons=auto --group-directories-first'
+alias l='eza -lh --icons=auto --git --group-directories-first'
+alias ll='eza -lah --icons=auto --git --group-directories-first --header'
+alias lsa='eza -a --icons=auto --group-directories-first'
+alias tree='eza --tree --icons=auto --group-directories-first'
+alias lt='eza --tree --icons=auto --group-directories-first --ignore-glob="node_modules|dist|.git"'
 
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 eval "$(mise activate zsh)"
 
-alias nv=nvim
+alias n=nvim
 
-. "$HOME/.atuin/bin/env"
-
+# atuin
+#. "$HOME/.atuin/bin/env"
+export ATUIN_NOBIND="true"
 eval "$(atuin init zsh)"
+#bindkey '^[[B' atuin-search
+bindkey "$terminfo[kcud1]" atuin-search
+bindkey '^r' atuin-search
+# atuin
 
 source ~/.zsh-hacks.zsh

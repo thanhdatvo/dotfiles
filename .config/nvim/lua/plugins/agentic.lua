@@ -1,5 +1,7 @@
 return {
   "carlos-algms/agentic.nvim",
+
+  enabled = false,
   opts = {
     -- provider = "opencode-acp",
     provider = "claude-agent-acp",

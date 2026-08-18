@@ -24,7 +24,25 @@ return {
         preview = true,
         width_focus = 30,
         width_preview = 30,
+        -- width_focus = 30,
+        -- width_nofocus = 20,
+        -- width_preview = 40,
       },
     },
+    config = function(_, opts)
+      require("mini.files").setup(opts)
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "MiniFilesBufferCreate",
+        callback = function(args)
+          vim.api.nvim_buf_call(args.data.buf_id, function()
+            -- highlight MiniFilesFile guifg=#ABB2BF
+            -- highlight MiniFilesDirectory guifg=#82AAFF
+            vim.cmd([[
+            ]])
+          end)
+        end,
+      })
+    end,
   },
 }
