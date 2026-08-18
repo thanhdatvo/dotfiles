@@ -1,4 +1,6 @@
 .config/*
+!.config/eza/
+!.config/atuin/
 !.config/ghostty/
 !.config/nvim/
 !.config/kitty/
@@ -7,6 +9,9 @@
 !.config/starship.toml
 !.config/gh-dash/
 !.config/yazi/
+!.config/mise/
+!.config/gh/
+!.config/gh-dash/
 flavors/
 # preview.png
 

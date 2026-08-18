@@ -1,0 +1,41 @@
+filenames:
+  README.md:
+    icon:
+      glyph: "󰈙"
+
+  Dockerfile:
+    icon:
+      glyph: "󰡨"
+
+  docker-compose.yml:
+    icon:
+      glyph: "󰡨"
+
+extensions:
+  md:
+    icon:
+      glyph: "󰍔"
+
+  sh:
+    icon:
+      glyph: ""
+
+  py:
+    icon:
+      glyph: ""
+
+  ts:
+    icon:
+      glyph: ""
+
+  json:
+    icon:
+      glyph: ""
+
+  yml:
+    icon:
+      glyph: ""
+
+  yaml:
+    icon:
+      glyph: ""
