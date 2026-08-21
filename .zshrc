@@ -97,20 +97,38 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 
 # Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::aws
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
-zinit snippet OMZP::command-not-found
+# zinit snippet OMZL::git.zsh
+# zinit snippet OMZP::git
+# zinit snippet OMZP::sudo
+# zinit snippet OMZP::archlinux
+# zinit snippet OMZP::aws
+# zinit snippet OMZP::kubectl
+# zinit snippet OMZP::kubectx
+# zinit snippet OMZP::command-not-found
+
+# kubectl
+if (( $+commands[kubectl] )); then
+  source <(kubectl completion zsh)
+fi
+
+# docker
+if (( $+commands[docker] )); then
+  source <(docker completion zsh)
+fi
+
+# gh
+if (( $+commands[gh] )); then
+  source <(gh completion -s zsh)
+fi
+
+# AWS
+if (( $+commands[aws_completer] )); then
+  complete -C aws_completer aws
+fi
 
 source $ZSH/oh-my-zsh.sh
 
 zinit cdreplay -q
-
-zinit light Aloxaf/fzf-tab
 
 bindkey -e
 
@@ -148,14 +166,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 
 # fzf-tab previews
-zstyle ':fzf-tab:*' \
-  continuous-trigger \
-  '/'
-zstyle ':fzf-tab:*' \
-  fzf-flags \
-  '--multi' \
-  '--preview-window=right:70%'
-
 zstyle ':fzf-tab:complete:cd:*' \
   fzf-preview \
   'eza -la \
@@ -174,8 +184,17 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' \
     --no-user \
     "$realpath"'
 
+zstyle ':fzf-tab:*' \
+  continuous-trigger \
+  '/'
+zstyle ':fzf-tab:*' \
+  fzf-flags \
+  '--multi' \
+  '--preview-window=right:70%'
+
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
 zstyle ':fzf-tab:*' \
   popup-min-size \
   140 \
