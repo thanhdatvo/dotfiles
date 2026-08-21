@@ -134,6 +134,14 @@ setopt hist_find_no_dups
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Enable grouped completion descriptions
+zstyle ':completion:*:descriptions' \
+  format '[%d]'
+
+# Let fzf-tab receive the completion list
+zstyle ':completion:*' \
+  menu no
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # Required/recommended for fzf-tab
@@ -144,15 +152,22 @@ zstyle ':fzf-tab:*' \
   continuous-trigger \
   '/'
 
-zstyle ':fzf-tab:*' fzf-preview '
-  if [[ -d "$realpath" ]]; then
-    eza -la --color=always "$realpath"
-  elif [[ -f "$realpath" ]]; then
-    bat --color=always --style=numbers "$realpath" 2>/dev/null
-  else
-    echo "$word"
-  fi
-'
+zstyle ':fzf-tab:complete:cd:*' \
+  fzf-preview \
+  'eza -la --color=always "$realpath"'
+
+zstyle ':fzf-tab:complete:__zoxide_z:*' \
+  fzf-preview \
+  'eza -la --color=always "$realpath"'
+
+# zstyle ':fzf-tab:*' \
+#   fzf-flags \
+#   '--multi'
+#
+# zstyle ':fzf-tab:*' \
+#   fzf-bindings \
+#   'tab:toggle+down' \
+#   'shift-tab:toggle+up'
 
 # Aliases
 alias c='clear'
