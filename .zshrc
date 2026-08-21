@@ -160,6 +160,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' \
   fzf-preview \
   'eza -la --color=always "$realpath"'
 
+zstyle ':fzf-tab:*' switch-group '<' '>'
 # zstyle ':fzf-tab:*' \
 #   fzf-flags \
 #   '--multi'
