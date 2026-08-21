@@ -167,10 +167,10 @@ export KAFKA_JMX_OPTS="
 alias k=kubectl
 
 # for pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-
-eval "$(pyenv init - zsh)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+#
+# eval "$(pyenv init - zsh)"
 
 # for nu to use ~/.config/nushell/*.nu
 export XDG_CONFIG_HOME="$HOME/.config"
