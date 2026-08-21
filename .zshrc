@@ -81,7 +81,88 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+
+# Zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [[ ! -d "$ZINIT_HOME/.git" ]]; then
+  mkdir -p "$(dirname "$ZINIT_HOME")"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "$ZINIT_HOME/zinit.zsh"
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+
+# Add in snippets
+zinit snippet OMZL::git.zsh
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::aws
+zinit snippet OMZP::kubectl
+zinit snippet OMZP::kubectx
+zinit snippet OMZP::command-not-found
+
+source $ZSH/oh-my-zsh.sh
+
+zinit cdreplay -q
+
+zinit light Aloxaf/fzf-tab
+
+bindkey -e
+
+# History
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# Required/recommended for fzf-tab
+zstyle ':completion:*' menu no
+
+# fzf-tab previews
+zstyle ':fzf-tab:*' \
+  continuous-trigger \
+  '/'
+
+zstyle ':fzf-tab:*' fzf-preview '
+  if [[ -d "$realpath" ]]; then
+    eza -la --color=always "$realpath"
+  elif [[ -f "$realpath" ]]; then
+    bat --color=always --style=numbers "$realpath" 2>/dev/null
+  else
+    echo "$word"
+  fi
+'
+
+# Aliases
+alias c='clear'
+
+# Shell integrations
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 # User configuration
+
+zinit light Aloxaf/fzf-tab
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -146,7 +227,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock
 
-eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -279,3 +359,5 @@ bindkey '^r' atuin-search
 # atuin
 
 source ~/.zsh-hacks.zsh
+
+export PATH="/Users/thanhdatvo/.venv-vllm-metal/bin:$PATH"
