@@ -166,12 +166,6 @@ export KAFKA_JMX_OPTS="
 
 alias k=kubectl
 
-# for pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-#
-# eval "$(pyenv init - zsh)"
-
 # for nu to use ~/.config/nushell/*.nu
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -267,12 +261,78 @@ eval "$(mise activate zsh)"
 alias nv=nvim
 
 # atuin
+unset ATUIN_TMUX_POPUP
+unset ATUIN_TMUX_POPUP_WIDTH
+unset ATUIN_TMUX_POPUP_HEIGHT
 . "$HOME/.atuin/bin/env"
 export ATUIN_NOBIND="true"
 eval "$(atuin init zsh)"
-#bindkey '^[[B' atuin-search
-bindkey "$terminfo[kcud1]" atuin-search
-bindkey '^r' atuin-search
+
+
+
+_atuin_popup() {
+  local tmp
+  local pane_top cursor_y pane_left cursor_x
+  local window_height window_width
+  local popup_height=20
+  local popup_width=90
+  local popup_x popup_y
+  local escaped_query
+
+  tmp="$(mktemp)"
+
+  # Current command already typed at the prompt
+  escaped_query=$(printf '%s' "$BUFFER" | sed "s/'/'\\\\''/g")
+
+  local -a pos
+  pos=("${(@s: :)$(tmux display-message -p \
+    '#{pane_top} #{cursor_y} #{pane_left} #{cursor_x} #{window_height} #{window_width}')}")
+
+  pane_top=$pos[1]
+  cursor_y=$pos[2]
+  pane_left=$pos[3]
+  cursor_x=$pos[4]
+  window_height=$pos[5]
+  window_width=$pos[6]
+
+  # Absolute cursor position in the tmux client
+  popup_x=$(( pane_left + cursor_x ))
+
+  # tmux -y refers to the popup bottom edge.
+  # Put popup directly BELOW the current command line.
+  popup_y=$(( pane_top + cursor_y + popup_height + 1 ))
+
+  # Keep popup inside screen horizontally
+  if (( popup_x + popup_width > window_width )); then
+    popup_x=$(( window_width - popup_width ))
+  fi
+
+  (( popup_x < 0 )) && popup_x=0
+
+  tmux display-popup \
+    -x "$popup_x" \
+    -y "$popup_y" \
+    -w "$popup_width" \
+    -h "$popup_height" \
+    -E -E \
+    -- sh -c \
+    "ATUIN_SHELL=zsh ATUIN_QUERY='$escaped_query' atuin search -i 2>'$tmp'"
+
+  if [[ -s "$tmp" ]]; then
+    BUFFER="$(<"$tmp")"
+    CURSOR=${#BUFFER}
+  fi
+
+  rm -f "$tmp"
+  zle reset-prompt
+}
+
+
+zle -N _atuin_popup
+bindkey '^r' _atuin_popup
+bindkey "$terminfo[kcud1]" _atuin_popup
+# bindkey "$terminfo[kcud1]" atuin-search
+# bindkey '^r' atuin-search
 # atuin
 
 source ~/.zsh-hacks.zsh
