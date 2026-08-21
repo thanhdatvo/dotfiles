@@ -79,7 +79,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-
+source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -283,6 +283,7 @@ export PATH="/Users/thanhdatvo/.venv-vllm-metal/bin:$PATH"
 
 
 
+
 # Zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -307,9 +308,6 @@ zinit light zsh-users/zsh-completions
 # zinit snippet OMZP::kubectx
 # zinit snippet OMZP::command-not-found
 
-source $ZSH/oh-my-zsh.sh
-
-
 # kubectl
 if (( $+commands[kubectl] )); then
   source <(kubectl completion zsh)
@@ -329,6 +327,8 @@ fi
 if (( $+commands[aws_completer] )); then
   complete -C aws_completer aws
 fi
+
+
 zinit cdreplay -q
 
 bindkey -e
