@@ -151,16 +151,36 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' \
   continuous-trigger \
   '/'
+zstyle ':fzf-tab:*' \
+  fzf-flags \
+  '--multi' \
+  '--preview-window=right:70%'
 
 zstyle ':fzf-tab:complete:cd:*' \
   fzf-preview \
-  'eza -la --color=always "$realpath"'
+  'eza -la \
+    --color=always \
+    --group-directories-first \
+    --no-permissions \
+    --no-user \
+    "$realpath"'
 
 zstyle ':fzf-tab:complete:__zoxide_z:*' \
   fzf-preview \
-  'eza -la --color=always "$realpath"'
+  'eza -la \
+    --color=always \
+    --group-directories-first \
+    --no-permissions \
+    --no-user \
+    "$realpath"'
 
 zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' \
+  popup-min-size \
+  140 \
+  35
+
 # zstyle ':fzf-tab:*' \
 #   fzf-flags \
 #   '--multi'
