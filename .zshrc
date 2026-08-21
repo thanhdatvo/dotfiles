@@ -79,145 +79,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
 
-
-# Zinit
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-if [[ ! -d "$ZINIT_HOME/.git" ]]; then
-  mkdir -p "$(dirname "$ZINIT_HOME")"
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-source "$ZINIT_HOME/zinit.zsh"
-
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-
-# Add in snippets
-# zinit snippet OMZL::git.zsh
-# zinit snippet OMZP::git
-# zinit snippet OMZP::sudo
-# zinit snippet OMZP::archlinux
-# zinit snippet OMZP::aws
-# zinit snippet OMZP::kubectl
-# zinit snippet OMZP::kubectx
-# zinit snippet OMZP::command-not-found
-
-# kubectl
-if (( $+commands[kubectl] )); then
-  source <(kubectl completion zsh)
-fi
-
-# docker
-if (( $+commands[docker] )); then
-  source <(docker completion zsh)
-fi
-
-# gh
-if (( $+commands[gh] )); then
-  source <(gh completion -s zsh)
-fi
-
-# AWS
-if (( $+commands[aws_completer] )); then
-  complete -C aws_completer aws
-fi
-
-source $ZSH/oh-my-zsh.sh
-
-zinit cdreplay -q
-
-bindkey -e
-
-# History
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey '^[w' kill-region
-
-# History
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-# Enable grouped completion descriptions
-zstyle ':completion:*:descriptions' \
-  format '[%d]'
-
-# Let fzf-tab receive the completion list
-zstyle ':completion:*' \
-  menu no
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-
-# Required/recommended for fzf-tab
-zstyle ':completion:*' menu no
-
-# fzf-tab previews
-zstyle ':fzf-tab:complete:cd:*' \
-  fzf-preview \
-  'eza -la \
-    --color=always \
-    --group-directories-first \
-    --no-permissions \
-    --no-user \
-    "$realpath"'
-
-zstyle ':fzf-tab:complete:__zoxide_z:*' \
-  fzf-preview \
-  'eza -la \
-    --color=always \
-    --group-directories-first \
-    --no-permissions \
-    --no-user \
-    "$realpath"'
-
-zstyle ':fzf-tab:*' \
-  continuous-trigger \
-  '/'
-zstyle ':fzf-tab:*' \
-  fzf-flags \
-  '--multi' \
-  '--preview-window=right:70%'
-
-zstyle ':fzf-tab:*' switch-group '<' '>'
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-
-zstyle ':fzf-tab:*' \
-  popup-min-size \
-  140 \
-  35
-
-# zstyle ':fzf-tab:*' \
-#   fzf-flags \
-#   '--multi'
-#
-# zstyle ':fzf-tab:*' \
-#   fzf-bindings \
-#   'tab:toggle+down' \
-#   'shift-tab:toggle+up'
-
-# Aliases
-alias c='clear'
-
-# Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-# User configuration
-
-zinit light Aloxaf/fzf-tab
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -416,3 +278,144 @@ bindkey '^r' atuin-search
 source ~/.zsh-hacks.zsh
 
 export PATH="/Users/thanhdatvo/.venv-vllm-metal/bin:$PATH"
+
+
+
+
+
+# Zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [[ ! -d "$ZINIT_HOME/.git" ]]; then
+  mkdir -p "$(dirname "$ZINIT_HOME")"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "$ZINIT_HOME/zinit.zsh"
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+
+# Add in snippets
+# zinit snippet OMZL::git.zsh
+# zinit snippet OMZP::git
+# zinit snippet OMZP::sudo
+# zinit snippet OMZP::archlinux
+# zinit snippet OMZP::aws
+# zinit snippet OMZP::kubectl
+# zinit snippet OMZP::kubectx
+# zinit snippet OMZP::command-not-found
+
+source $ZSH/oh-my-zsh.sh
+
+
+# kubectl
+if (( $+commands[kubectl] )); then
+  source <(kubectl completion zsh)
+fi
+
+# docker
+if (( $+commands[docker] )); then
+  source <(docker completion zsh)
+fi
+
+# gh
+if (( $+commands[gh] )); then
+  source <(gh completion -s zsh)
+fi
+
+# AWS
+if (( $+commands[aws_completer] )); then
+  complete -C aws_completer aws
+fi
+zinit cdreplay -q
+
+bindkey -e
+
+# History
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Enable grouped completion descriptions
+zstyle ':completion:*:descriptions' \
+  format '[%d]'
+
+# Let fzf-tab receive the completion list
+zstyle ':completion:*' \
+  menu no
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# Required/recommended for fzf-tab
+zstyle ':completion:*' menu no
+
+# fzf-tab previews
+zstyle ':fzf-tab:complete:cd:*' \
+  fzf-preview \
+  'eza -la \
+    --color=always \
+    --group-directories-first \
+    --no-permissions \
+    --no-user \
+    "$realpath"'
+
+zstyle ':fzf-tab:complete:__zoxide_z:*' \
+  fzf-preview \
+  'eza -la \
+    --color=always \
+    --group-directories-first \
+    --no-permissions \
+    --no-user \
+    "$realpath"'
+
+zstyle ':fzf-tab:*' \
+  continuous-trigger \
+  '/'
+zstyle ':fzf-tab:*' \
+  fzf-flags \
+  '--multi' \
+  '--preview-window=right:70%'
+
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+zstyle ':fzf-tab:*' \
+  popup-min-size \
+  140 \
+  35
+
+# zstyle ':fzf-tab:*' \
+#   fzf-flags \
+#   '--multi'
+#
+# zstyle ':fzf-tab:*' \
+#   fzf-bindings \
+#   'tab:toggle+down' \
+#   'shift-tab:toggle+up'
+
+# Aliases
+alias c='clear'
+
+# Shell integrations
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+# User configuration
+
+zinit light Aloxaf/fzf-tab
