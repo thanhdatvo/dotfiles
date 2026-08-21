@@ -122,3 +122,12 @@ vim.filetype.add({
     Fastfile = "ruby",
   },
 })
+
+-- reset this for grib
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "sql",
+  callback = function(args)
+    pcall(vim.keymap.del, "i", "<Right>", { buffer = args.buf })
+    pcall(vim.keymap.del, "i", "<Left>", { buffer = args.buf })
+  end,
+})

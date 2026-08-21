@@ -319,7 +319,19 @@ _atuin_popup() {
     "ATUIN_SHELL=zsh ATUIN_QUERY='$escaped_query' atuin search -i 2>'$tmp'"
 
   if [[ -s "$tmp" ]]; then
-    BUFFER="$(<"$tmp")"
+    local output
+    output="$(<"$tmp")"
+
+    if [[ "$output" == __atuin_accept__:* ]]; then
+      BUFFER="${output#__atuin_accept__:}"
+      CURSOR=${#BUFFER}
+      rm -f "$tmp"
+      zle reset-prompt
+      zle accept-line
+      return
+    fi
+
+    BUFFER="$output"
     CURSOR=${#BUFFER}
   fi
 
