@@ -1,22 +1,15 @@
 return {
-  {
-    "pablopunk/pi.nvim",
+  "alex35mil/pi.nvim",
 
-    keys = {
-      {
-        "<leader>ai",
-        "<cmd>PiAsk<cr>",
-        mode = "n",
-        desc = "Ask pi",
-      },
-      {
-        "<leader>ai",
-        "<cmd>PiAskSelection<cr>",
-        mode = "v",
-        desc = "Ask pi (selection)",
-      },
-    },
+  -- Optional: required only for `:PiPasteImage` (clipboard image paste).
+  dependencies = { "HakonHarnes/img-clip.nvim" },
 
-    opts = {},
+  -- if you're fine with defaults:
+  config = true,
+
+  -- or, if you want to customize:
+  opts = {
+    models = { ... },
+    layout = { ... },
   },
 }

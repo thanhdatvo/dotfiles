@@ -1,5 +1,21 @@
 {
   "providers": {
+    "llm-lite": {
+      "baseUrl": "http://llmlite-dev-nlb-2d750e52f6078fef.elb.us-east-1.amazonaws.com:4000",
+      "apiKey": "$ANTHROPIC_AUTH_TOKEN",
+      "api": "anthropic-messages",
+      "models": [
+        {
+          "id": "claude-sonnet",
+          "name": "Claude Sonnet via LiteLLM",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 200000,
+          "maxTokens": 16384,
+          "authHeader": true
+        }
+      ]
+    },
     "local-openai": {
       "baseUrl": "http://localhost:7777/v1",
       "api": "openai-responses",
