@@ -491,3 +491,8 @@ eval "$(zoxide init --cmd cd zsh)"
 # User configuration
 
 zinit light Aloxaf/fzf-tab
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/thanhdatvo/.lmstudio/bin"
+# End of LM Studio CLI section
+
